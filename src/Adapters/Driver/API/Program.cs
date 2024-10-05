@@ -22,7 +22,7 @@ internal class Program
         builder.Services.AddTransient<IConnectionStringProvider, ConnectionStringProvider>();
         builder.Services.AddDbContext<Infra.Data.Context.NpgsqlContext>(
             options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
-
+        builder.Services.AddMediatR(config => config.RegisterServicesFromAssembly(typeof(Application.Commands.AddClienteCommand).Assembly));
         builder.Services.AddTransient<IClienteUseCase, ClienteUseCase>();
         builder.Services.AddTransient<IClienteRepository, ClienteRepository>();
 

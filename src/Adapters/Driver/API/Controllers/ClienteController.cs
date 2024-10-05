@@ -1,5 +1,6 @@
-﻿using Application.UseCases.Clientes;
-using Domain.Entities;
+﻿using Application.Commands;
+using Application.Queries;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -9,12 +10,12 @@ namespace API.Controllers
     public class ClienteController : Controller
     {
         private readonly ILogger<ClienteController> _logger;
-        private readonly IClienteUseCase _clienteUseCase;
+        private readonly IMediator _mediator;
 
-        public ClienteController(ILogger<ClienteController> logger, IClienteUseCase clienteUseCase)
+        public ClienteController(ILogger<ClienteController> logger, IMediator mediator)
         {
             _logger = logger;
-            _clienteUseCase = clienteUseCase;
+            _mediator = mediator;
         }
 
         /// <summary>
@@ -23,22 +24,22 @@ namespace API.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("Cadastrar")]
-        public async Task<IActionResult> Cadastrar(Cliente cliente)
+        public async Task<IActionResult> CadastrarCliente([FromBody] AddClienteCommand command)
         {
-            await _clienteUseCase.Cadastrar(cliente);
-            return Ok(cliente);
+            await _mediator.Send(command);
+            return Ok();
         }
 
-        /// <summary>
         /// Consultar um cliente por CPF
         /// </summary>
         /// <param name="cpf">CPF</param>
         /// <returns></returns>
         [HttpGet]
-        [Route("ConsultarPorCpf")]
+        [Route("ConsultarPorCpf/{cpf}")]
         public async Task<IActionResult> ConsultarPorCpf(string cpf)
         {
-            var cliente = await _clienteUseCase.ConsultarPorCpf(cpf);
+            var query = new GetClienteByCpfQuery(cpf);
+            var cliente = await _mediator.Send(query);
             return Ok(cliente);
         }
     }
