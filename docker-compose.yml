@@ -1,0 +1,28 @@
+services:
+  api:
+    image: ${DOCKER_REGISTRY-}api
+    container_name: orders.api
+    build:
+      context: .
+      dockerfile: src/Adapters/Driver/API/Dockerfile
+    ports:
+        - "5000:5000"
+        - "5001:5001" 
+    depends_on:
+      - postgress.database
+    command: >
+      sh -c "dotnet ef database update --project /app/src/Adapters/Driven/Infra.Data/Infra.Data.csproj --startup-project /app/src/Adapters/Driver/API/API.csproj && dotnet API.dll"
+
+
+  postgress.database:
+    image: postgres:latest
+    container_name: postgress.database
+    environment:
+        - POSTGRES_DB=foodorder
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=postgres
+    volumes:
+        - ./.containers/foodorder-db:/var/lib/postgresql/data
+    ports:
+        - "5432:5432"
+    

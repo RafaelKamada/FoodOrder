@@ -1,14 +1,23 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Domain.Entities;
+using Infra.Data.Configurations;
 
 namespace Infra.Data.Context
 {
     public class NpgsqlContext : DbContext
     {
-        public NpgsqlContext(DbContextOptions<NpgsqlContext> options) : base(options)
-        { }
+        private readonly IConnectionStringProvider _connectionStringProvider;
 
-        public virtual DbSet<Cliente> Clientes { get; set; }
+        public NpgsqlContext(IConnectionStringProvider connectionStringProvider)
+        {
+            _connectionStringProvider = connectionStringProvider;
+        }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseNpgsql(_connectionStringProvider.GetConnectionString("DefaultConnection"));
+        }
+
+        public DbSet<Cliente> Clientes { get; set; }
     }
 }

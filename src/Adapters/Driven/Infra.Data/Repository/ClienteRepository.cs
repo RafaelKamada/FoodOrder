@@ -28,7 +28,7 @@ namespace Infra.Data.Repository
 
         public async Task<Cliente> ConsultarPorCpf(string cpf)
         {
-            var cliente = await _context.Clientes.FirstOrDefaultAsync(x => x.CPF == cpf);
+            var cliente = await _context.Clientes.FirstOrDefaultAsync(x => x.Cpf == cpf);
 
             if (cliente == null)
             {

@@ -1,31 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Domain.Entities
 {
     public class Cliente
     {
+        [Key]
+        public Guid Id { get; set; }
+
+        public string Cpf { get; set; }
+
+        public string Nome { get; set; }
+
+        public string Email { get; set; }
+
         public Cliente(string cpf, string nome, string email)
         {
-            CPF = cpf;
+            Cpf = cpf;
             Nome = nome;
             Email = email;
 
             ValidaEntidade();
         }
 
-        public string CPF { get; set; }
-        
-        public string Nome { get; set; }
-
-        public string Email { get; set; }
-
         public void ValidaEntidade()
         {
-            if (string.IsNullOrEmpty(CPF))
+            if (string.IsNullOrEmpty(Cpf))
             {
                 throw new Exception("CPF inválido");
             }

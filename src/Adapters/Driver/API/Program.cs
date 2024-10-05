@@ -1,6 +1,7 @@
+using API.Services;
 using Application.UseCases.Clientes;
 using Domain.Ports;
-using Infra.Data.Context;
+using Infra.Data.Configurations;
 using Infra.Data.Repository;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,10 +18,13 @@ internal class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
+
+        builder.Services.AddTransient<IConnectionStringProvider, ConnectionStringProvider>();
+        builder.Services.AddDbContext<Infra.Data.Context.NpgsqlContext>(
+            options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
         builder.Services.AddTransient<IClienteUseCase, ClienteUseCase>();
         builder.Services.AddTransient<IClienteRepository, ClienteRepository>();
-
-        ConfigureServices(builder.Services);
 
         var app = builder.Build();
 
@@ -31,18 +35,12 @@ internal class Program
             app.UseSwaggerUI();
         }
 
+        app.ApplyMigrations();
         app.UseHttpsRedirection();
         app.UseAuthorization();
         app.MapControllers();
 
         app.Run();
                 
-    }
-
-    public static void ConfigureServices(IServiceCollection services)
-    {
-        var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-        services.AddDbContext<NpgsqlContext>(options =>
-            options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
     }
 }
