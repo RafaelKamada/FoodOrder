@@ -3,9 +3,9 @@ using MediatR;
 
 namespace Application.Queries
 {
-    public class GetProdutoByCategoriaQuery : IRequest<Produto>
+    public class GetProdutoByCategoriaQuery : IRequest<List<Produto>>
     {
-        private string Categoria { get; }
+        public string Categoria { get; }
 
         public GetProdutoByCategoriaQuery(string categoria)
         {
