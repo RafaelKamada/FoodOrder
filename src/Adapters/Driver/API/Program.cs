@@ -1,5 +1,6 @@
 using API.Services;
 using Application.UseCases.Clientes;
+using Application.UseCases.Produtos;
 using Domain.Ports;
 using Infra.Data.Configurations;
 using Infra.Data.Repository;
@@ -25,6 +26,8 @@ internal class Program
         builder.Services.AddMediatR(config => config.RegisterServicesFromAssembly(typeof(Application.Commands.AddClienteCommand).Assembly));
         builder.Services.AddTransient<IClienteUseCase, ClienteUseCase>();
         builder.Services.AddTransient<IClienteRepository, ClienteRepository>();
+        builder.Services.AddTransient<IProdutoUseCase, ProdutoUseCase>();
+        builder.Services.AddTransient<IProdutoRepository, ProdutoRepository>();
 
         var app = builder.Build();
 
