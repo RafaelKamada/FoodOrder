@@ -28,7 +28,7 @@ internal class Program
         builder.Services.AddTransient<IClienteRepository, ClienteRepository>();
         builder.Services.AddTransient<IProdutoUseCase, ProdutoUseCase>();
         builder.Services.AddTransient<IProdutoRepository, ProdutoRepository>();
-
+        
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.

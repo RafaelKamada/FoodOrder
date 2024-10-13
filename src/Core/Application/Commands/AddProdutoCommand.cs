@@ -17,7 +17,7 @@ namespace Application.Commands
         public string Categoria { get; set; }
         public decimal Preco { get; set; }
         public string Descricao { get; set; }
-        public IEnumerable<IFormFile?> Imagens { get; set; }
+        public IEnumerable<IFormFile?>? Imagens { get; set; }
         public TimeSpan TempoPreparo { get; set; }
     }
 }
