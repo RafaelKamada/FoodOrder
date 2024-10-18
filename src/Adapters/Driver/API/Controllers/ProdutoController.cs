@@ -36,8 +36,33 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        [Route("Cadastrar/Categoria")]
-        public async Task<IActionResult> Categoria([FromBody] AddCategoriaCommand command)
+        [Route("Categoria")]
+        public async Task<IActionResult> CadastrarCategoria([FromBody] AddCategoriaCommand command)
+        {
+            await _mediator.Send(command);
+            return Ok();
+        }
+
+        [HttpGet]
+        [Route("Categoria")]
+        public async Task<IActionResult> ConsultarCategoria()
+        {
+            var command = new GetAllCategoriaCommand();
+            await _mediator.Send(command);
+            return Ok();
+        }
+
+        [HttpPut]
+        [Route("Categoria")]
+        public async Task<IActionResult> AtualizarCategoria([FromBody] UpdateCategoriaCommand command)
+        {
+            await _mediator.Send(command);
+            return Ok();
+        }
+
+        [HttpDelete]
+        [Route("Categoria")]
+        public async Task<IActionResult> DeletarCategoria([FromBody] DeleteCategoriaCommand command)
         {
             await _mediator.Send(command);
             return Ok();

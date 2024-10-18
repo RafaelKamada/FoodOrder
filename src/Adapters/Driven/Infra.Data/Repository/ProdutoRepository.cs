@@ -37,6 +37,26 @@ namespace Infra.Data.Repository
             return categoria;
         }
 
+        public async Task<Categoria> Atualizar(Categoria categoria)
+        {
+            if (categoria == null) throw new ArgumentNullException(nameof(categoria));
+
+            _context.Categoria.Update(categoria);
+            await _context.SaveChangesAsync();
+            return categoria;
+        }
+
+        public async Task<Categoria> Deletar(int id)
+        {
+            var categoria = await _context.Categoria.FindAsync(id);
+
+            if (categoria == null) return null;
+
+            _context.Categoria.Remove(categoria);
+            await _context.SaveChangesAsync();
+            return categoria;
+        }
+
         public async Task<Categoria> ConsultarCategoria(string categoria)
         {
             if (string.IsNullOrEmpty(categoria))
@@ -50,6 +70,10 @@ namespace Infra.Data.Repository
             return dto ?? new Categoria();
         }
 
+        public async Task<List<Categoria>> ConsultarCategoria()
+        {
+            return await _context.Categoria.ToListAsync();
+        }
 
         public async Task<List<Produto>> ConsultarPorCategoria(string categoria)
         {
@@ -60,6 +84,15 @@ namespace Infra.Data.Repository
 
             var produtos = await _context.Produtos
                 .Where(x => x.Categoria.Nome == categoria)
+                .ToListAsync();
+
+            return produtos;
+        }
+
+        public async Task<List<Produto>> ConsultarProdutoPorCategoriaId(int id)
+        {
+            var produtos = await _context.Produtos
+                .Where(x => x.Categoria.Id == id)
                 .ToListAsync();
 
             return produtos;

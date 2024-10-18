@@ -2,7 +2,6 @@
 using Application.UseCases.Produtos;
 using Domain.Entities;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 
 namespace Application.Handlers
 {

@@ -27,14 +27,34 @@ namespace Application.UseCases.Produtos
             return _produtoRepository.Cadastrar(categoria);
         }
 
+        public Task<Categoria> Atualizar(Categoria categoria)
+        {
+            return _produtoRepository.Atualizar(categoria);
+        }
+
+        public Task<Categoria> DeletarCategoria(int id)
+        {
+            return _produtoRepository.Deletar(id);
+        }
+
         public Task<Categoria> ConsultarCategoria(string categoria)
         {
             return _produtoRepository.ConsultarCategoria(categoria);
         }
 
+        public Task<List<Categoria>> ConsultarCategoria()
+        {
+            return _produtoRepository.ConsultarCategoria();
+        }
+
         public Task<List<Produto>> ConsultarPorCategoria(string categoria)
         {
             return _produtoRepository.ConsultarPorCategoria(categoria);
+        }
+
+        public Task<List<Produto>> ConsultarPorCategoriaId(int id)
+        {
+            return _produtoRepository.ConsultarProdutoPorCategoriaId(id);
         }
     }
 }
