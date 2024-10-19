@@ -5,7 +5,7 @@ using MediatR;
 
 namespace Application.Handlers
 {
-    public class AddClienteCommandHandler : IRequestHandler<AddClienteCommand, Unit>
+    public class AddClienteCommandHandler : IRequestHandler<AddClienteCommand, Cliente>
     {
         private readonly IClienteUseCase _clienteUseCase;
 
@@ -14,20 +14,13 @@ namespace Application.Handlers
             _clienteUseCase = clienteUseCase;
         }
 
-        public async Task<Unit> Handle(AddClienteCommand request, CancellationToken cancellationToken)
+        public async Task<Cliente> Handle(AddClienteCommand request, CancellationToken cancellationToken)
         {
             var cliente = new Cliente(request.Cpf, request.Nome, request.Email);
 
-            var clienteBase = await _clienteUseCase.ConsultarPorCpf(request.Cpf);
-            
-            if (clienteBase != null)
-            {
-                throw new Exception("CPF ja cadastrado!");
-            }
+            var clienteCadastrado = await _clienteUseCase.Cadastrar(cliente);
 
-            await _clienteUseCase.Cadastrar(cliente);
-
-            return Unit.Value;
+            return clienteCadastrado;
         }
 
     }

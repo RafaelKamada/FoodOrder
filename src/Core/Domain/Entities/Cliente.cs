@@ -14,7 +14,7 @@ namespace Domain.Entities
             Cpf = cpf;
             Nome = nome;
             Email = email;
-            DataCadastro = DateTime.Now;
+            DataCadastro = DateTime.UtcNow;
 
             //ValidaEntidade();
         }

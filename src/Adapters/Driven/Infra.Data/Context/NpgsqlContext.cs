@@ -23,6 +23,7 @@ namespace Infra.Data.Context
             //base.OnModelCreating(modelBuilder);
             //modelBuilder.HasSequence<int>("PedidoSequencia", schema: "public").StartsAt(1).IncrementsBy(1).HasMin(1);
             //modelBuilder.Entity<Pedido>().Property(p => p.NumeroPedido).HasDefaultValueSql("nextval('public.PedidoSequencia')");
+            modelBuilder.Entity<Cliente>().HasIndex(c => c.Cpf).IsUnique().HasDatabaseName("UN_Cliente_Cpf");
         }
 
         public DbSet<Cliente> Clientes { get; set; }

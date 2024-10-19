@@ -16,28 +16,27 @@ namespace Infra.Data.Repository
 
         public async Task<Cliente> Cadastrar(Cliente cliente)
         {
-            if (cliente == null)
+            try
             {
-                throw new ArgumentNullException(nameof(cliente));
+                _context.Clientes.Add(cliente);
+                await _context.SaveChangesAsync();
+                return cliente;
             }
-
-            _context.Clientes.Add(cliente);
-            await _context.SaveChangesAsync();
-            return cliente;
+            catch (DbUpdateException dbEx)
+            {
+                if (dbEx.InnerException != null && dbEx.InnerException.Message.Contains("UN_Cliente_Cpf"))
+                {
+                    // Tratar o erro de CPF duplicado
+                    throw new Exception("CPF já está cadastrado.");
+                }
+                throw;
+            }
         }
 
         public async Task<Cliente> ConsultarPorCpf(string cpf)
         {
             var cliente = await _context.Clientes.FirstOrDefaultAsync(x => x.Cpf == cpf);
-
-            if (cliente == null)
-            {
-                throw new ArgumentNullException(nameof(cliente));
-            }
-            else
-            {
-                return cliente;
-            }
+            return cliente;
         }
     }
 }
