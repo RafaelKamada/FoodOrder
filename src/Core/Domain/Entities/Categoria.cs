@@ -19,6 +19,13 @@ namespace Domain.Entities
             Tipo = tipo;
         }
 
+        public Categoria(int id, string nome, string tipo)
+        {
+            Id = id;
+            Nome = nome;
+            Tipo = tipo;
+        }
+
         [Key]
         public int Id { get; set; }
         [Required]

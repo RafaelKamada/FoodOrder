@@ -35,9 +35,50 @@ namespace API.Controllers
             return Ok(cliente);
         }
 
+        [HttpPut]
+        [Route("Atualizar")]
+        public async Task<IActionResult> AtualizarCategoria([FromBody] UpdateProdutoCommand command)
+        {
+            await _mediator.Send(command);
+            return Ok();
+        }
+
+        [HttpDelete]
+        [Route("Deletar")]
+        public async Task<IActionResult> DeletarCategoria([FromBody] DeleteProdutoCommand command)
+        {
+            await _mediator.Send(command);
+            return Ok();
+        }
+
         [HttpPost]
-        [Route("Cadastrar/Categoria")]
-        public async Task<IActionResult> Categoria([FromBody] AddCategoriaCommand command)
+        [Route("Categoria/Cadastrar")]
+        public async Task<IActionResult> CadastrarCategoria([FromBody] AddCategoriaCommand command)
+        {
+            await _mediator.Send(command);
+            return Ok();
+        }
+
+        [HttpGet]
+        [Route("Categoria/Consultar")]
+        public async Task<IActionResult> ConsultarCategoria()
+        {
+            var command = new GetAllCategoriaQuery();
+            var categoria = await _mediator.Send(command);
+            return Ok(categoria);
+        }
+
+        [HttpPut]
+        [Route("Categoria/Atualizar")]
+        public async Task<IActionResult> AtualizarCategoria([FromBody] UpdateCategoriaCommand command)
+        {
+            await _mediator.Send(command);
+            return Ok();
+        }
+
+        [HttpDelete]
+        [Route("Categoria/Deletar")]
+        public async Task<IActionResult> DeletarCategoria([FromBody] DeleteCategoriaCommand command)
         {
             await _mediator.Send(command);
             return Ok();

@@ -10,8 +10,9 @@ using System.Threading.Tasks;
 
 namespace Application.Commands
 {
-    public class AddProdutoCommand : IRequest<Unit>
+    public class UpdateProdutoCommand : IRequest<Unit>
     {
+        public int Id { get; set; }
         public string Nome { get; set; }
         public string Categoria { get; set; }
         public decimal Preco { get; set; }
