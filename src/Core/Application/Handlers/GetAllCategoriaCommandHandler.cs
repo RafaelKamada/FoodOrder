@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace Application.Handlers
 {
-    public class GetAllCategoriaCommandHandler : IRequestHandler<GetAllCategoriaCommand, List<Categoria>>
+    public class GetAllCategoriaCommandHandler : IRequestHandler<GetAllCategoriaQuery, List<Categoria>>
     {
         private readonly IProdutoUseCase _produtoUseCase;
 
@@ -15,24 +15,17 @@ namespace Application.Handlers
             _produtoUseCase = produtoUseCase;
         }
 
-        public async Task<List<Categoria>> Handle(GetAllCategoriaCommand request, CancellationToken cancellationToken)
+        public async Task<List<Categoria>> Handle(GetAllCategoriaQuery request, CancellationToken cancellationToken)
         {
             try
             {
-                return await _produtoUseCase.ConsultarCategoria();
+                var categoria = await _produtoUseCase.ConsultarCategoria();
+                return categoria;
             }
             catch (Exception)
             {
                 throw;
             }
         }
-
-        public async Task<bool> ValidarProduto(int id)
-        {
-            var produto = await _produtoUseCase.ConsultarPorCategoriaId(id);
-
-            return produto.Count != 0;
-        }
     }
-
 }

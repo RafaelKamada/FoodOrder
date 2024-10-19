@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Application.Commands
 {
-    public class GetAllCategoriaCommand : IRequest<List<Categoria>>
+    public class GetAllCategoriaQuery : IRequest<List<Categoria>>
     {
         
     }

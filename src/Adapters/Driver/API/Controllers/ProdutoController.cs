@@ -35,8 +35,24 @@ namespace API.Controllers
             return Ok(cliente);
         }
 
+        [HttpPut]
+        [Route("Atualizar")]
+        public async Task<IActionResult> AtualizarCategoria([FromBody] UpdateProdutoCommand command)
+        {
+            await _mediator.Send(command);
+            return Ok();
+        }
+
+        [HttpDelete]
+        [Route("Deletar")]
+        public async Task<IActionResult> DeletarCategoria([FromBody] DeleteProdutoCommand command)
+        {
+            await _mediator.Send(command);
+            return Ok();
+        }
+
         [HttpPost]
-        [Route("Categoria")]
+        [Route("Categoria/Cadastrar")]
         public async Task<IActionResult> CadastrarCategoria([FromBody] AddCategoriaCommand command)
         {
             await _mediator.Send(command);
@@ -44,16 +60,16 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        [Route("Categoria")]
+        [Route("Categoria/Consultar")]
         public async Task<IActionResult> ConsultarCategoria()
         {
-            var command = new GetAllCategoriaCommand();
-            await _mediator.Send(command);
-            return Ok();
+            var command = new GetAllCategoriaQuery();
+            var categoria = await _mediator.Send(command);
+            return Ok(categoria);
         }
 
         [HttpPut]
-        [Route("Categoria")]
+        [Route("Categoria/Atualizar")]
         public async Task<IActionResult> AtualizarCategoria([FromBody] UpdateCategoriaCommand command)
         {
             await _mediator.Send(command);
@@ -61,7 +77,7 @@ namespace API.Controllers
         }
 
         [HttpDelete]
-        [Route("Categoria")]
+        [Route("Categoria/Deletar")]
         public async Task<IActionResult> DeletarCategoria([FromBody] DeleteCategoriaCommand command)
         {
             await _mediator.Send(command);
