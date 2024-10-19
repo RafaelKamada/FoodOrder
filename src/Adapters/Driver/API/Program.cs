@@ -1,5 +1,6 @@
 using API.Services;
 using Application.UseCases.Clientes;
+using Application.UseCases.Pedidos;
 using Application.UseCases.Produtos;
 using Domain.Ports;
 using Infra.Data.Configurations;
@@ -28,7 +29,10 @@ internal class Program
         builder.Services.AddTransient<IClienteRepository, ClienteRepository>();
         builder.Services.AddTransient<IProdutoUseCase, ProdutoUseCase>();
         builder.Services.AddTransient<IProdutoRepository, ProdutoRepository>();
-        
+        builder.Services.AddTransient<IPedidoUseCase, PedidoUseCase>();
+        builder.Services.AddTransient<IPedidoRepository, PedidoRepository>();
+
+
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.

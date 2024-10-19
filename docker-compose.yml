@@ -7,7 +7,6 @@ services:
       dockerfile: src/Adapters/Driver/API/Dockerfile
     ports:
         - "5000:5000"
-        - "5001:5001" 
     depends_on:
       - postgress.database
     command: >

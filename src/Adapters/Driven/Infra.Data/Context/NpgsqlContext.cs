@@ -18,8 +18,16 @@ namespace Infra.Data.Context
             optionsBuilder.UseNpgsql(_connectionStringProvider.GetConnectionString("DefaultConnection"));
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            //base.OnModelCreating(modelBuilder);
+            //modelBuilder.HasSequence<int>("PedidoSequencia", schema: "public").StartsAt(1).IncrementsBy(1).HasMin(1);
+            //modelBuilder.Entity<Pedido>().Property(p => p.NumeroPedido).HasDefaultValueSql("nextval('public.PedidoSequencia')");
+        }
+
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Categoria> Categoria { get; set; }
+        public DbSet<Pedido> Pedidos { get; set; }
     }
 }

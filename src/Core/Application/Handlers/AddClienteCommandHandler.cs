@@ -18,6 +18,13 @@ namespace Application.Handlers
         {
             var cliente = new Cliente(request.Cpf, request.Nome, request.Email);
 
+            var clienteBase = await _clienteUseCase.ConsultarPorCpf(request.Cpf);
+            
+            if (clienteBase != null)
+            {
+                throw new Exception("CPF ja cadastrado!");
+            }
+
             await _clienteUseCase.Cadastrar(cliente);
 
             return Unit.Value;
