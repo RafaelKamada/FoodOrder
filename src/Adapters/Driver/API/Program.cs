@@ -39,7 +39,6 @@ internal class Program
         }
 
         app.ApplyMigrations();
-        app.UseHttpsRedirection();
         app.UseAuthorization();
         app.MapControllers();
 
