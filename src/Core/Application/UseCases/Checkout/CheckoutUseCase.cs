@@ -49,6 +49,7 @@ namespace Application.UseCases.Checkout
                 else
                 {
                     sacola.Id++;
+                    sacola = await _sacolaRepository.Cadastrar(sacola);
                 }
 
                 foreach (int id in produtosIds)
@@ -70,7 +71,7 @@ namespace Application.UseCases.Checkout
                 //TODO: Validar quais status serão utilizados no status do pagamento.
                 PagamentoStatus pagamentoStatus = new PagamentoStatus("Concluído");
                 Pagamento pagamento = new Pagamento(valorTotal, pagamentoStatus);
-                Pedido pedido = new Pedido(numeroPedido: 1, tempoEsperaMinutos, cliente, pagamento, pedidoStatus, sacola);
+                Pedido pedido = new Pedido(numeroPedido: 10, tempoEsperaMinutos, cliente, pagamento, pedidoStatus, sacola);
 
                 var pedidoCadastrado = await _pedidoRepository.Cadastrar(pedido);
 

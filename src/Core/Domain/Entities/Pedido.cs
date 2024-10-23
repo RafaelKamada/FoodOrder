@@ -14,7 +14,7 @@ namespace Domain.Entities
         {
             NumeroPedido = numeroPedido;
             TempoEspera = tempoEspera;
-            DataCriacao = DateTime.Now;
+            DataCriacao = DateTime.UtcNow;
             Cliente = cliente;
             Pagamento = pagamento;
             Pedido_Status = pedidoStatus;

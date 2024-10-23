@@ -11,13 +11,13 @@ namespace Application.Output
 
         public DateTime DataCriacao { get; set; }
 
-        public Guid ClienteId { get; set; }
+        public Guid? ClienteId { get; set; }
 
-        public int PagamentoId { get; set; }
+        public int? PagamentoId { get; set; }
 
-        public int PedidoStatusId { get; set; }
+        public int? PedidoStatusId { get; set; }
 
-        public int SacolaId { get; set; }
+        public int? SacolaId { get; set; }
 
         public List<ProdutoOutput> Produtos {get;set;}
     }

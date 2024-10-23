@@ -14,9 +14,13 @@ namespace Infra.Data.Repository
             _context = context;
         }
 
-        public async Task<List<SacolaProduto>> ListarProdutosDaSacola()
+        public async Task<List<SacolaProduto>> ConsultarPorSacola(int id)
         {
-            return await _context.SacolasProdutos.ToListAsync();
+            var sacolaProduto = await _context.SacolasProdutos
+               .Where(x => x.Sacola.Id == id)
+               .ToListAsync();
+
+            return sacolaProduto;
         }
 
         public async Task<SacolaProduto> Cadastrar(SacolaProduto sacolaProduto)

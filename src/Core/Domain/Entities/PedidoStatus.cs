@@ -12,7 +12,7 @@ namespace Domain.Entities
         public PedidoStatus(string descricao)
         {
             Descricao = descricao;
-            DataCriacao = DateTime.Now;
+            DataCriacao = DateTime.UtcNow;
         }
 
         [Key]

@@ -13,11 +13,11 @@ namespace Domain.Entities
         {
             Valor = valor;
             Pagamento_Status = pagamentoStatus;
-            DataCriacao = DateTime.Now;
+            DataCriacao = DateTime.UtcNow;
 
             if (pagamentoStatus.Descricao == "Finalizado")
             {
-                DataPagamentoEfetuado = DateTime.Now;
+                DataPagamentoEfetuado = DateTime.UtcNow;
             }
         }
 
