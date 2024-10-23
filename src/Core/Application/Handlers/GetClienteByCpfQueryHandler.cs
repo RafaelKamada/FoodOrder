@@ -1,23 +1,22 @@
 ﻿using Application.Queries;
+using Application.UseCases.Clientes;
 using Domain.Entities;
-using Domain.Ports;
 using MediatR;
 
 namespace Application.Handlers
 {
     public class GetClienteByCpfQueryHandler : IRequestHandler<GetClienteByCpfQuery, Cliente>
     {
-        private readonly IClienteRepository _clienteRepository;
+        private readonly IClienteUseCase _clienteUseCase;
 
-        public GetClienteByCpfQueryHandler(IClienteRepository clienteRepository)
+        public GetClienteByCpfQueryHandler(IClienteUseCase clienteUseCase)
         {
-            _clienteRepository = clienteRepository;
+            _clienteUseCase = clienteUseCase;
         }
 
         public async Task<Cliente> Handle(GetClienteByCpfQuery request, CancellationToken cancellationToken)
         {
-            var cliente = await _clienteRepository.ConsultarPorCpf(request.Cpf);
-            return cliente;
+            return await _clienteUseCase.ConsultarPorCpf(request.Cpf);
         }
     }
 }

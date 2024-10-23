@@ -1,43 +1,36 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace Domain.Entities
 {
     public class Cliente
     {
-        [Key]
-        public Guid Id { get; set; }
-
-        public string Cpf { get; set; }
-
-        public string Nome { get; set; }
-
-        public string Email { get; set; }
+        public Cliente()
+        {
+        }
 
         public Cliente(string cpf, string nome, string email)
         {
             Cpf = cpf;
             Nome = nome;
             Email = email;
-
-            ValidaEntidade();
+            DataCadastro = DateTime.UtcNow;
         }
 
-        public void ValidaEntidade()
-        {
-            if (string.IsNullOrEmpty(Cpf))
-            {
-                throw new Exception("CPF inválido");
-            }
+        [Key]
+        public Guid Id { get; set; }
 
-            if (string.IsNullOrEmpty(Nome))
-            {
-                throw new Exception("Nome inválido");
-            }
+        [Required(ErrorMessage = "O CPF é obrigatório")]
+        public string Cpf { get; set; }
 
-            if (string.IsNullOrEmpty(Email))
-            {
-                throw new Exception("Email inválido");
-            }
-        }
+        [Required(ErrorMessage = "O Nome é obrigatório")]
+        public string Nome { get; set; }
+
+        [Required(ErrorMessage = "O Email é obrigatório")]
+        public string Email { get; set; }
+
+        [JsonIgnore]
+        public DateTime DataCadastro { get; set; }
+
     }
 }

@@ -14,6 +14,7 @@ namespace Domain.Ports
         Task<List<Produto>> ConsultarProdutoPorCategoriaId(int id);
         Task<Produto> Atualizar(Produto categoria);
         Task<Produto> Deletar(int id);
+        Task<Produto> ConsultarPorId(int id);
         Task<Categoria> Cadastrar(Categoria categoria);
         Task<Categoria> Atualizar(Categoria categoria);
         Task<Categoria> DeletarCategoria(int id);

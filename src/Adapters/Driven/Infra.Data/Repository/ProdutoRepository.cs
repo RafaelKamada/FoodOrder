@@ -72,6 +72,17 @@ namespace Infra.Data.Repository
             return produto;
         }
 
+        public async Task<Produto> ConsultarPorId(int id)
+        {
+            Produto produto = await _context.Produtos.Where(x => x.Id == id).FirstOrDefaultAsync();
+
+            if (produto == null)
+            {
+                return new Produto();
+            }
+
+            return produto;
+        }
         #endregion
 
         #region CATEGORIA

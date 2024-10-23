@@ -12,14 +12,18 @@ namespace Application.UseCases.Clientes
             _clienteRepository = clienteRepository;
         }
 
-        public Task<Cliente> Cadastrar(Cliente cliente)
+        public async Task<Cliente> Cadastrar(Cliente cliente)
         {
-            return _clienteRepository.Cadastrar(cliente);
+            return await _clienteRepository.Cadastrar(cliente);
         }
 
-        public Task<Cliente> ConsultarPorCpf(string cpf)
+        public async Task<Cliente> ConsultarPorCpf(string cpf)
         {
-            return _clienteRepository.ConsultarPorCpf(cpf);
+            var cliente = await _clienteRepository.ConsultarPorCpf(cpf);
+
+            if (cliente == null) throw new ArgumentException($"CPF {cpf} não localizado no banco de dados!");
+
+            return cliente;
         }
     }
 }
