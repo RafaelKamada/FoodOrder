@@ -9,9 +9,8 @@ namespace Domain.Entities
         {
         }
 
-        public PedidoStatus(int id, string descricao)
+        public PedidoStatus(string descricao)
         {
-            Id = id;
             Descricao = descricao;
             DataCriacao = DateTime.Now;
         }

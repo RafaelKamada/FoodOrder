@@ -10,18 +10,16 @@ namespace Domain.Entities
         {
         }
 
-        public Pedido(int numeroPedido, Cliente cliente, Pagamento pagamento, PedidoStatus pedidoStatus, Sacola sacola)
+        public Pedido(int numeroPedido, TimeSpan tempoEspera, Cliente cliente, Pagamento pagamento, PedidoStatus pedidoStatus, Sacola sacola)
         {
             NumeroPedido = numeroPedido;
-            //TODO: Calcular tempo de espera conforme o Sacola.Pedido.TempoPreparo (usar um linq);
-            //TempoEspera = tempoEspera;
+            TempoEspera = tempoEspera;
             DataCriacao = DateTime.Now;
             Cliente = cliente;
             Pagamento = pagamento;
             Pedido_Status = pedidoStatus;
             Sacola = sacola;
         }
-
 
         [Key]
         public int Id { get; set; }

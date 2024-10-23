@@ -14,6 +14,15 @@ namespace Infra.Data.Repository
             _context = context;
         }
 
+        public async Task<Pedido> Cadastrar(Pedido pedido)
+        {
+            if (pedido == null) throw new ArgumentNullException(nameof(pedido));
+
+            _context.Pedidos.Add(pedido);
+            await _context.SaveChangesAsync();
+            return pedido;
+        }
+
         public async Task<List<Pedido>> ListarPedidos()
         {
             return await _context.Pedidos.ToListAsync();

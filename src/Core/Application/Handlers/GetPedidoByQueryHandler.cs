@@ -1,11 +1,11 @@
-﻿using Application.Queries;
+﻿using Application.Output;
+using Application.Queries;
 using Application.UseCases.Pedidos;
-using Domain.Entities;
 using MediatR;
 
 namespace Application.Handlers
 {
-    public class GetPedidoByQueryHandler : IRequestHandler<GetPedidoByQuery, List<Pedido>>
+    public class GetPedidoByQueryHandler : IRequestHandler<GetPedidoByQuery, List<PedidoOutput>>
     {
         private readonly IPedidoUseCase _pedidoUseCase;
 
@@ -14,7 +14,7 @@ namespace Application.Handlers
             _pedidoUseCase = pedidoUseCase;
         }
 
-        public async Task<List<Pedido>> Handle(GetPedidoByQuery request, CancellationToken cancellationToken)
+        public async Task<List<PedidoOutput>> Handle(GetPedidoByQuery request, CancellationToken cancellationToken)
         {
             return await _pedidoUseCase.ListarPedidos();
         }

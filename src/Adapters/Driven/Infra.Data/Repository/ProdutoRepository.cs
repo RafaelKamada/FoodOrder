@@ -64,5 +64,17 @@ namespace Infra.Data.Repository
 
             return produtos;
         }
+
+        public async Task<Produto> ConsultarPorId(int id)
+        {
+            Produto produto = await _context.Produtos.Where(x => x.Id == id).FirstOrDefaultAsync();
+
+            if (produto == null)
+            {
+                return new Produto();
+            }
+
+            return produto;
+        }
     }
 }

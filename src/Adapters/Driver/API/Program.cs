@@ -1,4 +1,5 @@
 using API.Services;
+using Application.UseCases.Checkout;
 using Application.UseCases.Clientes;
 using Application.UseCases.Pedidos;
 using Application.UseCases.Produtos;
@@ -31,6 +32,9 @@ internal class Program
         builder.Services.AddTransient<IProdutoRepository, ProdutoRepository>();
         builder.Services.AddTransient<IPedidoUseCase, PedidoUseCase>();
         builder.Services.AddTransient<IPedidoRepository, PedidoRepository>();
+        builder.Services.AddTransient<ICheckoutUseCase, CheckoutUseCase>();
+        builder.Services.AddTransient<ISacolaRepository, SacolaRepository>();
+        builder.Services.AddTransient<ISacolaProdutoRepository, SacolaProdutoRepository>();
 
 
         var app = builder.Build();

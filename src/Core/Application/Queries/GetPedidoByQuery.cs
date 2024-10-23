@@ -1,9 +1,9 @@
-﻿using Domain.Entities;
+﻿using Application.Output;
 using MediatR;
 
 namespace Application.Queries
 {
-    public class GetPedidoByQuery : IRequest<List<Pedido>>
+    public class GetPedidoByQuery : IRequest<List<PedidoOutput>>
     {
     }
 }

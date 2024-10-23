@@ -6,7 +6,7 @@ namespace Domain.Entities
     {
         public Sacola()
         {
-            DataCriacao = DateTime.Now;
+            DataCriacao = DateTime.UtcNow;
         }
 
         [Key]

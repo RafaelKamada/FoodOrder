@@ -15,28 +15,7 @@ namespace Domain.Entities
             Nome = nome;
             Email = email;
             DataCadastro = DateTime.UtcNow;
-
-            //ValidaEntidade();
         }
-
-        public void ValidaEntidade()
-        {
-            if (string.IsNullOrEmpty(Cpf))
-            {
-                throw new Exception("CPF inválido");
-            }
-
-            if (string.IsNullOrEmpty(Nome))
-            {
-                throw new Exception("Nome inválido");
-            }
-
-            if (string.IsNullOrEmpty(Email))
-            {
-                throw new Exception("Email inválido");
-            }
-        }
-
 
         [Key]
         public Guid Id { get; set; }

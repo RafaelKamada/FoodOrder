@@ -13,5 +13,6 @@ namespace Domain.Ports
         Task<List<Produto>> ConsultarPorCategoria(string categoria);
         Task<Categoria> Cadastrar(Categoria categoria);
         Task<Categoria> ConsultarCategoria(string categoria);
+        Task<Produto> ConsultarPorId(int id);
     }
 }

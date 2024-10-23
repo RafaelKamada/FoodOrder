@@ -1,9 +1,9 @@
-﻿using Domain.Entities;
+﻿using Application.Output;
 
 namespace Application.UseCases.Pedidos
 {
     public interface IPedidoUseCase
     {
-        Task<List<Pedido>> ListarPedidos();
+        Task<List<PedidoOutput>> ListarPedidos();
     }
 }

@@ -30,5 +30,7 @@ namespace Infra.Data.Context
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Categoria> Categoria { get; set; }
         public DbSet<Pedido> Pedidos { get; set; }
+        public DbSet<Sacola> Sacola { get; set; }
+        public DbSet<SacolaProduto> SacolasProdutos { get; set; }
     }
 }
