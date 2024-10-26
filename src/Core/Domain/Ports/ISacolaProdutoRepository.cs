@@ -5,6 +5,6 @@ namespace Domain.Ports
     public interface ISacolaProdutoRepository
     {
         Task<SacolaProduto> Cadastrar(SacolaProduto produto);
-        Task<List<SacolaProduto>> ListarProdutosDaSacola();
+        Task<List<SacolaProduto>> ConsultarPorSacola(int id);
     }
 }

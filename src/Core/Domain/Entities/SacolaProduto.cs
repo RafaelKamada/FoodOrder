@@ -10,10 +10,10 @@ namespace Domain.Entities
 
         }
 
-        public SacolaProduto(Sacola sacola, Produto produto)
+        public SacolaProduto(int sacolaId, int produtoId)
         {
-            Sacola = sacola;
-            Produto = produto;
+            SacolaId = sacolaId;
+            ProdutoId = produtoId;
         }
 
 
@@ -21,9 +21,9 @@ namespace Domain.Entities
         public int Id { get; set; }
 
         [ForeignKey("SacolaId")]
-        public Sacola Sacola { get; set; }
+        public int SacolaId { get; set; }
 
         [ForeignKey("ProdutoId")]
-        public Produto Produto { get; set; }
+        public int ProdutoId { get; set; }
     }
 }

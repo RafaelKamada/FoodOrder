@@ -11,7 +11,7 @@ namespace Domain.Entities
         public PagamentoStatus(string descricao)
         {
             Descricao = descricao;
-            DataCriacao = DateTime.Now;
+            DataCriacao = DateTime.UtcNow;
         }
 
         [Key]

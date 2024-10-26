@@ -7,10 +7,14 @@ namespace Application.UseCases.Pedidos
     public class PedidoUseCase : IPedidoUseCase
     {
         private readonly IPedidoRepository _pedidosRepository;
+        private readonly ISacolaProdutoRepository _sacolaProdutoRepository;
+        private readonly IProdutoRepository _produtoRepository;
 
-        public PedidoUseCase(IPedidoRepository pedidosRepository)
+        public PedidoUseCase(IPedidoRepository pedidosRepository, ISacolaProdutoRepository sacolaProdutoRepository, IProdutoRepository produtoRepository)
         {
             _pedidosRepository = pedidosRepository;
+            _sacolaProdutoRepository = sacolaProdutoRepository;
+            _produtoRepository = produtoRepository;
         }
 
         public async Task<List<PedidoOutput>> ListarPedidos()
@@ -39,16 +43,36 @@ namespace Application.UseCases.Pedidos
                     pedidoOutput.Id = item.Id;
                     pedidoOutput.NumeroPedido = item.NumeroPedido;
                     pedidoOutput.TempoEspera = item.TempoEspera;
-                    pedidoOutput.ClienteId = item.Cliente.Id;
-                    pedidoOutput.PagamentoId = item.Pagamento.Id;
-                    pedidoOutput.PedidoStatusId = item.Pedido_Status.Id;
-                    pedidoOutput.SacolaId = item.Sacola.Id;
+                    pedidoOutput.ClienteId = item.ClienteId;
+                    pedidoOutput.PagamentoId = item.PagamentoId;
+                    pedidoOutput.PedidoStatusId = item.PedidoStatusId;
+                    pedidoOutput.SacolaId = item.SacolaId;
 
-                    ProdutoOutput produto = new ProdutoOutput();
-                    produto.Id = 1;
-                    produto.Nome = "teste";
-                    produto.Descricao = "teste descr";
-                    pedidoOutput.Produtos.Add(produto);
+                    var sacolasProdutos = await _sacolaProdutoRepository.ConsultarPorSacola(item.SacolaId);
+
+                    foreach (var itemSacolaProduto in sacolasProdutos)
+                    {
+                        var produtoBase = await _produtoRepository.ConsultarPorId(itemSacolaProduto.ProdutoId);
+                        
+                        if (produtoBase?.Id == null)
+                        {
+                            ProdutoOutput produtoOut = new ProdutoOutput();
+                            produtoOut.Id = 1;
+                            produtoOut.Nome = "Nome";
+                            produtoOut.Descricao = "Descricao";
+                            pedidoOutput.Produtos.Add(produtoOut);
+                            continue;
+                        }
+                        else
+                        {
+                            ProdutoOutput produto = new ProdutoOutput();
+                            produto.Id = produtoBase.Id;
+                            produto.Nome = produtoBase.Nome;
+                            produto.Descricao = produtoBase.Descricao;
+                            pedidoOutput.Produtos.Add(produto);
+                        }
+                    }
+
                     pedidosOutput.Add(pedidoOutput);
                 }
             }

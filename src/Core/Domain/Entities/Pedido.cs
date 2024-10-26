@@ -10,15 +10,15 @@ namespace Domain.Entities
         {
         }
 
-        public Pedido(int numeroPedido, TimeSpan tempoEspera, Cliente cliente, Pagamento pagamento, PedidoStatus pedidoStatus, Sacola sacola)
+        public Pedido(int numeroPedido, TimeSpan tempoEspera, Guid clienteId, int pagamentoId, int pedidoStatusId, int sacolaId)
         {
             NumeroPedido = numeroPedido;
             TempoEspera = tempoEspera;
-            DataCriacao = DateTime.Now;
-            Cliente = cliente;
-            Pagamento = pagamento;
-            Pedido_Status = pedidoStatus;
-            Sacola = sacola;
+            DataCriacao = DateTime.UtcNow;
+            ClienteId = clienteId;
+            PagamentoId = pagamentoId;
+            PedidoStatusId = pedidoStatusId;
+            SacolaId = sacolaId;
         }
 
         [Key]
@@ -33,16 +33,16 @@ namespace Domain.Entities
         public DateTime DataCriacao { get; set; }
 
         [ForeignKey("ClienteId")]
-        public Cliente Cliente { get; set; }
+        public Guid ClienteId { get; set; }
 
         [ForeignKey("PagamentoId")]
-        public Pagamento Pagamento { get; set; }
+        public int PagamentoId { get; set; }
 
         [ForeignKey("PedidoStatusId")]
-        public PedidoStatus Pedido_Status { get; set; }
+        public int PedidoStatusId { get; set; }
 
         [ForeignKey("SacolaId")]
-        public Sacola Sacola { get; set; }
+        public int SacolaId { get; set; }
 
     }
 }

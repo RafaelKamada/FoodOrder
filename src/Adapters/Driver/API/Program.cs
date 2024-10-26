@@ -35,6 +35,9 @@ internal class Program
         builder.Services.AddTransient<ICheckoutUseCase, CheckoutUseCase>();
         builder.Services.AddTransient<ISacolaRepository, SacolaRepository>();
         builder.Services.AddTransient<ISacolaProdutoRepository, SacolaProdutoRepository>();
+        builder.Services.AddTransient<IPagamentoRepository, PagamentoRepository>();
+        builder.Services.AddTransient<IPagamentoStatusRepository, PagamentoStatusRepository>();
+        builder.Services.AddTransient<IPedidoStatusRepository, PedidoStatusRepository>();
 
 
         var app = builder.Build();
