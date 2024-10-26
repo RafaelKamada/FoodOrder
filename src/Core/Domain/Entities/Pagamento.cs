@@ -15,7 +15,7 @@ namespace Domain.Entities
             Pagamento_Status = pagamentoStatus;
             DataCriacao = DateTime.UtcNow;
 
-            if (pagamentoStatus.Descricao == "Finalizado")
+            if (pagamentoStatus.Descricao == "Concluído")
             {
                 DataPagamentoEfetuado = DateTime.UtcNow;
             }

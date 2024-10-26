@@ -17,7 +17,7 @@ namespace Infra.Data.Repository
         public async Task<List<SacolaProduto>> ConsultarPorSacola(int id)
         {
             var sacolaProduto = await _context.SacolasProdutos
-               .Where(x => x.Sacola.Id == id)
+               .Where(x => x.SacolaId == id)
                .ToListAsync();
 
             return sacolaProduto;

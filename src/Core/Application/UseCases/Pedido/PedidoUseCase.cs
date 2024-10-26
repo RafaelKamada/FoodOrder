@@ -43,18 +43,18 @@ namespace Application.UseCases.Pedidos
                     pedidoOutput.Id = item.Id;
                     pedidoOutput.NumeroPedido = item.NumeroPedido;
                     pedidoOutput.TempoEspera = item.TempoEspera;
-                    pedidoOutput.ClienteId = item.Cliente?.Id;
-                    pedidoOutput.PagamentoId = item.Pagamento?.Id;
-                    pedidoOutput.PedidoStatusId = item.Pedido_Status?.Id;
-                    pedidoOutput.SacolaId = item.Sacola?.Id;
+                    pedidoOutput.ClienteId = item.ClienteId;
+                    pedidoOutput.PagamentoId = item.PagamentoId;
+                    pedidoOutput.PedidoStatusId = item.PedidoStatusId;
+                    pedidoOutput.SacolaId = item.SacolaId;
 
-                    var sacolasProdutos = await _sacolaProdutoRepository.ConsultarPorSacola(item.Sacola?.Id ?? 0);
+                    var sacolasProdutos = await _sacolaProdutoRepository.ConsultarPorSacola(item.SacolaId);
 
                     foreach (var itemSacolaProduto in sacolasProdutos)
                     {
-                        var produtoBase = await _produtoRepository.ConsultarPorId(itemSacolaProduto.Produto.Id);
-
-                        if (produtoBase == null)
+                        var produtoBase = await _produtoRepository.ConsultarPorId(itemSacolaProduto.ProdutoId);
+                        
+                        if (produtoBase?.Id == null)
                         {
                             ProdutoOutput produtoOut = new ProdutoOutput();
                             produtoOut.Id = 1;
@@ -73,11 +73,6 @@ namespace Application.UseCases.Pedidos
                         }
                     }
 
-                    //ProdutoOutput produto = new ProdutoOutput();
-                    //produto.Id = 1;
-                    //produto.Nome = "teste";
-                    //produto.Descricao = "teste descr";
-                    //pedidoOutput.Produtos.Add(produto);
                     pedidosOutput.Add(pedidoOutput);
                 }
             }
