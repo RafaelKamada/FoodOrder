@@ -1,11 +1,10 @@
 # FoodOrder
-## Descrição do Projeto
-<p align="center">Este projeto tem como objetivo concluir a primeira etapa da entrega do Tech Challenge do curso de Software Architecture da Pós Graduação da FIAP.</p>
 
+## Descrição do Projeto
 <h1 align="center">
-    <a href="https://dotnet.microsoft.com/pt-br/apps/aspnet/">🔗 .NET</a>
+    ![alt text](https://imgur.com/a/yvphlCf)
 </h1>
-<p align="center">🚀 lib para construir interfaces do usuário com componentes reutilizáveis</p>
+<p align="center">Este projeto tem como objetivo concluir a primeira etapa da entrega do Tech Challenge do curso de Software Architecture da Pós Graduação da FIAP.</p>
 
 ### Entregáveis Fase 1
 
@@ -23,5 +22,11 @@
         - [x] Listar os pedidos
     - [x] Swagger para consumo das APIs
     - [x] Banco de dados à sua escolha
-    - [x] Dockerfile configurado para executá=la corretamente
+    - [x] Dockerfile configurado para executá-la corretamente
     - [x] docker-compose.yml para subir o ambiente completo
+
+### Autores
+- Rafael Kamada - RMXXXX
+- Diego Gomes - RMXXXX
+- Robson Vilaça - RMXXXXX
+- Nathalia Freire - RM359533
