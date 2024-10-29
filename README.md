@@ -1,8 +1,7 @@
 # FoodOrder
-
-## Descrição do Projeto
 ![FoodOrder](foodorder.png?raw=true "FoodOrder")
 
+## Descrição do Projeto
 <p align="center">Este projeto tem como objetivo concluir a primeira etapa da entrega do Tech Challenge do curso de Software Architecture da Pós Graduação da FIAP.</p>
 
 ### Entregáveis Fase 1
