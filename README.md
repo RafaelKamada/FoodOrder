@@ -1,8 +1,12 @@
+:hamburger: 
 # FoodOrder
 ![FoodOrder](foodorder.png?raw=true "FoodOrder")
 
 ## Descrição do Projeto
 <p align="center">Este projeto tem como objetivo concluir a primeira etapa da entrega do Tech Challenge do curso de Software Architecture da Pós Graduação da FIAP.</p>
+
+Linguagem escolhida: DotNet
+Banco de Dados: Postgres
 
 ### Entregáveis Fase 1
 
@@ -14,7 +18,7 @@
     - APIs ✔️
 
     | Status | Features cobertas                 | APIs                           |
-    | ------ | ----------------------------------| -------------------------------|
+    |  :---: | :---------------------------------| :------------------------------|
     |    ✔️   | Cadastro do Cliente               | `Cliente/Cadastrar`            |
     |    ✔️   | Identificação do Cliente via CPF  | `Cliente/ConsultarPorCPF`      |
     |    ✔️   | Criar produtos                    | `Produto/Cadastrar`            |
