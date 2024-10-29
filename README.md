@@ -2,7 +2,7 @@
 
 ## Descrição do Projeto
 <h1 align="center">
-    ![alt text](https://imgur.com/a/yvphlCf)
+    <blockquote class="imgur-embed-pub" lang="en" data-id="a/yvphlCf"  ><a href="//imgur.com/a/yvphlCf">FoodOrder</a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
 </h1>
 <p align="center">Este projeto tem como objetivo concluir a primeira etapa da entrega do Tech Challenge do curso de Software Architecture da Pós Graduação da FIAP.</p>
 
