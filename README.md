@@ -1,20 +1,20 @@
 # FoodOrder
 
 ## Descrição do Projeto
-
+![Alt text](relative%20path/FoodOrder/foodorder.png?raw=true "FoodOrder")
 
 <p align="center">Este projeto tem como objetivo concluir a primeira etapa da entrega do Tech Challenge do curso de Software Architecture da Pós Graduação da FIAP.</p>
 
 ### Entregáveis Fase 1
 
-- [x] Documentação do sistema (DDD) com Event Storming via [Miro](https://miro.com/app/board/uXjVKhyEAME=/?utm_source=notification&utm_medium=email&utm_campaign=daily-updates&utm_content=view-board-cta&lid=bpzqwwbw6c61), incluindo todos os passos/tipos de diagrama mostrados na aula 6 do módulo de DDD, e utilizando a linguagem ubíqua, dos seguintes fluxos: 
-    - [x] Realização do pedido e pagamento;
-    - [x] Preparação e entrega do pedido.
-- [x] Uma aplicação para todo o sistema de backend (monolito) que deverá ser desenvolvido seguindo os padrões apresentados nas aulas:
-    - [x] Utilizando arquitetura hexagonal
-    - [x] APIs:
+- Documentação do sistema (DDD) com Event Storming via [Miro](https://miro.com/app/board/uXjVKhyEAME=/?utm_source=notification&utm_medium=email&utm_campaign=daily-updates&utm_content=view-board-cta&lid=bpzqwwbw6c61), incluindo todos os passos/tipos de diagrama mostrados na aula 6 do módulo de DDD, e utilizando a linguagem ubíqua, dos seguintes fluxos: 
+    - Realização do pedido e pagamento; ✔️
+    - Preparação e entrega do pedido. ✔️
+- Uma aplicação para todo o sistema de backend (monolito) que deverá ser desenvolvido seguindo os padrões apresentados nas aulas:
+    - Utilizando arquitetura hexagonal ✔️
+    - APIs ✔️
 
-    | Status | Features cobertas                 | API                            |
+    | Status | Features cobertas                 | APIs                           |
     | ------ | ----------------------------------| -------------------------------|
     |    ✔️   | Cadastro do Cliente               | `Cliente/Cadastrar`            |
     |    ✔️   | Identificação do Cliente via CPF  | `Cliente/ConsultarPorCPF`      |
@@ -25,10 +25,10 @@
     |    ✔️   | FakeCheckout                      | `Checkout/FakeCheckout`        |
     |    ✔️   | Listar os pedidos                 | `Pedido/ListarPedidos`         |
 
-    - [x] Swagger para consumo das APIs
-    - [x] Banco de dados à sua escolha
-    - [x] Dockerfile configurado para executá-la corretamente
-    - [x] docker-compose.yml para subir o ambiente completo
+    - Swagger para consumo das APIs ✔️
+    - Banco de dados à sua escolha ✔️
+    - Dockerfile configurado para executá-la corretamente ✔️
+    - docker-compose.yml para subir o ambiente completo ✔️
 
 ### Execução do projeto
 ```docker-compose up -d```
