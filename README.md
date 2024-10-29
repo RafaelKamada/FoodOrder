@@ -1,7 +1,7 @@
 # FoodOrder
 
 ## Descrição do Projeto
-![Alt text](relative%20path/foodorder.png?raw=true "FoodOrder")
+![Alt text](foodorder.png?raw=true "FoodOrder")
 
 <p align="center">Este projeto tem como objetivo concluir a primeira etapa da entrega do Tech Challenge do curso de Software Architecture da Pós Graduação da FIAP.</p>
 
