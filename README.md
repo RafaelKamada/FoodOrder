@@ -1,15 +1,15 @@
 # :hamburger: FoodOrder
 ![FoodOrder](foodorder.png?raw=true "FoodOrder")
 
-## Descrição do Projeto
+## :pencil: Descrição do Projeto
 <p align="center">Este projeto tem como objetivo concluir a primeira etapa da entrega do Tech Challenge do curso de Software Architecture da Pós Graduação da FIAP.</p>
 
+### :computer: Tecnologias Utilizadas
 Linguagem escolhida: DotNet
 Banco de Dados: Postgres
 
-### Entregáveis Fase 1
-
-- Documentação do sistema (DDD) com Event Storming via [Miro](https://miro.com/app/board/uXjVKhyEAME=/?utm_source=notification&utm_medium=email&utm_campaign=daily-updates&utm_content=view-board-cta&lid=bpzqwwbw6c61), incluindo todos os passos/tipos de diagrama mostrados na aula 6 do módulo de DDD, e utilizando a linguagem ubíqua, dos seguintes fluxos: 
+### :hammer: Entregáveis Fase 1
+- Documentação do sistema (DDD) com Event Storming via [Miro](https://miro.com/app/board/uXjVKhyEAME=/?utm_source=notification&utm_medium=email&utm_campaign=daily-updates&utm_content=view-board-cta&lid=bpzqwwbw6c61) dos seguintes fluxos: 
     - Realização do pedido e pagamento; ✔️
     - Preparação e entrega do pedido. ✔️
 - Uma aplicação para todo o sistema de backend (monolito) que deverá ser desenvolvido seguindo os padrões apresentados nas aulas:
@@ -32,12 +32,13 @@ Banco de Dados: Postgres
     - Dockerfile configurado para executá-la corretamente ✔️
     - docker-compose.yml para subir o ambiente completo ✔️
 
-### Execução do projeto
+### :open_file_folder: Acesso ao projeto
+1. Faça o clone do projeto: ```git clone ...```
+
+### :hammer_and_wrench: Execução do projeto
 ```docker-compose up -d```
 
+### :busts_in_silhouette: Autores
+| [<img loading="lazy" src="https://avatars.githubusercontent.com/u/96452759?v=4" width=115><br><sub>Robson Vilaça - RM358345</sub>](https://github.com/vilacalima) |  [<img loading="lazy" src="https://avatars.githubusercontent.com/u/16946021?v=4" width=115><br><sub>Diego Gomes - RM358549</sub>](https://github.com/diegogl12) |  [<img loading="lazy" src="https://avatars.githubusercontent.com/u/8989346?v=4" width=115><br><sub>Nathalia Freire - RM359533</sub>](https://github.com/nathaliaifurita) |  [<img loading="lazy" src="https://avatars.githubusercontent.com/u/43392619?v=4" width=115><br><sub>Rafael Kamada - RM359345</sub>](https://github.com/RafaelKamada) |
+| :---: | :---: | :---: | :---: |
 
-### Autores
-- Rafael Kamada - RMXXXX
-- Diego Gomes - RMXXXX
-- Robson Vilaça - RMXXXXX
-- Nathalia Freire - RM359533
