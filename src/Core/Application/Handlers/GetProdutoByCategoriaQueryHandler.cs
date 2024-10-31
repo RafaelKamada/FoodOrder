@@ -5,7 +5,7 @@ using MediatR;
 
 namespace Application.Handlers
 {
-    public class GetProdutoByCategoriaQueryHandler : IRequestHandler<GetProdutoByCategoriaQuery, List<Produto>>
+    public class GetProdutoByCategoriaQueryHandler : IRequestHandler<GetProdutoByCategoriaQuery, List<ProdutoDto>>
     {
         private readonly IProdutoRepository _produtoRepository;
 
@@ -14,7 +14,7 @@ namespace Application.Handlers
             _produtoRepository = produtoRepository;
         }
 
-        public async Task<List<Produto>> Handle(GetProdutoByCategoriaQuery request, CancellationToken cancellationToken)
+        public async Task<List<ProdutoDto>> Handle(GetProdutoByCategoriaQuery request, CancellationToken cancellationToken)
         {
             return await _produtoRepository.ConsultarPorCategoria(request.Categoria);
         }

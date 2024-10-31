@@ -29,18 +29,44 @@ namespace Infra.Data.Repository
             return produto;
         }
 
-        public async Task<List<Produto>> ConsultarPorCategoria(string categoria)
+        public async Task<List<ProdutoDto>> ConsultarPorCategoria(string categoria)
         {
             if (string.IsNullOrEmpty(categoria))
             {
-                return new List<Produto>();
+                return new List<ProdutoDto>();
             }
 
-            var produtos = await _context.Produtos
-                .Where(x => x.Categoria.Nome == categoria)
-                .ToListAsync();
+            try
+            {
+                var produtos = await _context.Produtos
+                    .Where(p => p.Categoria != null && p.Categoria.Nome == categoria)
+                    .Include(p => p.Categoria)
+                    .Include(p => p.Imagens)
+                    .ToListAsync();
 
-            return produtos;
+                return produtos.Select(p => new ProdutoDto
+                {
+                    Id = p.Id,
+                    Nome = p.Nome,
+                    Categoria = p.Categoria,
+                    Descricao = p.Descricao,
+                    Preco = p.Preco,
+                    TempoPreparo = p.TempoPreparo,
+                    Imagens = p.Imagens?
+                        .Where(i => i.Data != null)
+                        .Select(i => new ImagemDto
+                        {
+                            Id = i.Id,
+                            Nome = i.Nome,
+                            //Base64 = Convert.ToBase64String(i.Data)
+                        }).ToList() ?? new List<ImagemDto>()
+                }).ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao consultar produtos: {ex.Message}");
+                return new List<ProdutoDto>();
+            }
         }
 
         public async Task<List<Produto>> ConsultarProdutoPorCategoriaId(int id)

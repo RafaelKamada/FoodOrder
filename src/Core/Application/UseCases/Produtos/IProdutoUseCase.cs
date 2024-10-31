@@ -10,7 +10,7 @@ namespace Application.UseCases.Produtos
     public interface IProdutoUseCase
     {
         Task<Produto> Cadastrar(Produto produto);
-        Task<List<Produto>> ConsultarPorCategoria(string categoria);
+        Task<List<ProdutoDto>> ConsultarPorCategoria(string categoria);
         Task<List<Produto>> ConsultarPorCategoriaId(int id);
         Task<Produto> Atualizar(Produto categoria);
         Task<Produto> Deletar(int id);
