@@ -22,7 +22,7 @@ namespace Application.UseCases.Produtos
             return _produtoRepository.Cadastrar(produto);
         }
 
-        public Task<List<Produto>> ConsultarPorCategoria(string categoria)
+        public Task<List<ProdutoDto>> ConsultarPorCategoria(string categoria)
         {
             return _produtoRepository.ConsultarPorCategoria(categoria);
         }

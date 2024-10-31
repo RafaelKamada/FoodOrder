@@ -20,7 +20,8 @@ namespace API.Controllers
 
         [HttpPost]
         [Route("Cadastrar")]
-        public async Task<IActionResult> Produto([FromBody] AddProdutoCommand command)
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> Produto([FromForm] AddProdutoCommand command)
         {
             await _mediator.Send(command);
             return Ok();
@@ -28,16 +29,17 @@ namespace API.Controllers
 
         [HttpGet]
         [Route("ConsultarPorCategoria/{categoria}")]
-        public async Task<IActionResult> ConsultarPorCpf(string categoria)
+        public async Task<IActionResult> ConsultarPorCategoria(string categoria)
         {
             var query = new GetProdutoByCategoriaQuery(categoria);
-            var cliente = await _mediator.Send(query);
-            return Ok(cliente);
+            var produto = await _mediator.Send(query);
+            return Ok(produto);
         }
 
         [HttpPut]
         [Route("Atualizar")]
-        public async Task<IActionResult> AtualizarCategoria([FromBody] UpdateProdutoCommand command)
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> AtualizarProduto([FromForm] UpdateProdutoCommand command)
         {
             await _mediator.Send(command);
             return Ok();
@@ -45,7 +47,7 @@ namespace API.Controllers
 
         [HttpDelete]
         [Route("Deletar")]
-        public async Task<IActionResult> DeletarCategoria([FromBody] DeleteProdutoCommand command)
+        public async Task<IActionResult> DeletarProduto([FromBody] DeleteProdutoCommand command)
         {
             await _mediator.Send(command);
             return Ok();
