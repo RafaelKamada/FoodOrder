@@ -36,7 +36,7 @@ namespace Domain.Entities
         [StringLength(500, ErrorMessage = "A descrição pode ter no máximo 500 caracteres")]
         public string Descricao { get; set; }
 
-        public List<Imagem>? Imagens { get; set; }
+        public List<Imagem>? Imagens { get; set; } = new List<Imagem>();
 
         [Required(ErrorMessage = "O tempo de preparo é obrigatório")]
         public TimeSpan TempoPreparo { get; set; }

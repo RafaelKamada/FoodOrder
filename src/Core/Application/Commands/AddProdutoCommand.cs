@@ -22,7 +22,7 @@ namespace Application.Commands
         public string Descricao { get; set; }
 
         [SwaggerSchema(Format = "binary")]
-        public List<IFormFile?> Imagens { get; set; }
+        public List<IFormFile?> Imagens { get; set; } = new List<IFormFile?>();
 
         [JsonConverter(typeof(TimeSpanConverter))]
         public TimeSpan TempoPreparo { get; set; }

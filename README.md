@@ -32,6 +32,10 @@
     - Dockerfile configurado para executá-la corretamente ✔️
     - docker-compose.yml para subir o ambiente completo ✔️
 
+### Documentação do Cadastro de Produto
+
+[README de cadastro de produto](./Readme/README_PRODUTO.md)
+
 ### :hammer_and_wrench: Execução do projeto
 1. Faça o clone do projeto: ```git@github.com:RafaelKamada/FoodOrder.git```
 2. Rode o comando do docker-compose na raiz do projeto: ```docker-compose up -d```
