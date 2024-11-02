@@ -25,7 +25,7 @@ namespace Application.Handlers
                     new ArgumentException("Categoria já cadastrada no banco de dados");
                 }
 
-                var salvarCategoria = new Categoria(request.Nome, request.Tipo);
+                var salvarCategoria = new Categoria(request.Nome.ToLower().Trim(), request.Tipo);
 
                 await _produtoUseCase.Cadastrar(salvarCategoria);
 
@@ -48,7 +48,7 @@ namespace Application.Handlers
             if (string.IsNullOrWhiteSpace(request.Nome))
                 throw new ArgumentException("Categoria não informada!");
 
-            var categoria = await _produtoUseCase.ConsultarCategoria(request.Nome);
+            var categoria = await _produtoUseCase.ConsultarCategoria(request.Nome.ToLower().Trim());
 
             return categoria != null;
         }

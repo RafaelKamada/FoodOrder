@@ -39,7 +39,7 @@ namespace Infra.Data.Repository
             try
             {
                 var produtos = await _context.Produtos
-                    .Where(p => p.Categoria != null && p.Categoria.Nome == categoria)
+                    .Where(p => p.Categoria != null && p.Categoria.Nome == categoria.ToLower().Trim())
                     .Include(p => p.Categoria)
                     .Include(p => p.Imagens)
                     .ToListAsync();
@@ -57,8 +57,7 @@ namespace Infra.Data.Repository
                         .Select(i => new ImagemDto
                         {
                             Id = i.Id,
-                            Nome = i.Nome,
-                            //Base64 = Convert.ToBase64String(i.Data)
+                            Nome = i.Nome
                         }).ToList() ?? new List<ImagemDto>()
                 }).ToList();
             }

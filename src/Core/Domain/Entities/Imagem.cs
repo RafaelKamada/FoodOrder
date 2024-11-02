@@ -17,9 +17,6 @@ namespace Domain.Entities
         [StringLength(255)]
         public string Nome { get; set; }
 
-        [Required]
-        public int ProdutoId { get; set; }
-
         [ForeignKey("ProdutoId")]
         public Produto Produto { get; set; }
 

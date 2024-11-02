@@ -8,7 +8,6 @@ namespace Domain.Entities
     public class ImagemDto
     {
         public int Id { get; set; }
-        public string Base64 { get; set; }
         public string Nome { get; set; }
     }
 }
