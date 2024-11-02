@@ -20,10 +20,16 @@ namespace Infra.Data.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //base.OnModelCreating(modelBuilder);
-            //modelBuilder.HasSequence<int>("PedidoSequencia", schema: "public").StartsAt(1).IncrementsBy(1).HasMin(1);
-            //modelBuilder.Entity<Pedido>().Property(p => p.NumeroPedido).HasDefaultValueSql("nextval('public.PedidoSequencia')");
             modelBuilder.Entity<Cliente>().HasIndex(c => c.Cpf).IsUnique().HasDatabaseName("UN_Cliente_Cpf");
+
+            modelBuilder.HasSequence<int>("numero_pedido_seq", schema: "public")
+            .StartsAt(1)
+            .IncrementsBy(1);
+
+            modelBuilder.Entity<Pedido>()
+                .Property(p => p.NumeroPedido)
+                .HasDefaultValueSql("nextval('public.numero_pedido_seq')");
+            base.OnModelCreating(modelBuilder);
         }
 
         public DbSet<Cliente> Clientes { get; set; }

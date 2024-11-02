@@ -10,9 +10,8 @@ namespace Domain.Entities
         {
         }
 
-        public Pedido(int numeroPedido, TimeSpan tempoEspera, Guid clienteId, int pagamentoId, int pedidoStatusId, int sacolaId)
+        public Pedido(TimeSpan tempoEspera, Guid clienteId, int pagamentoId, int pedidoStatusId, int sacolaId)
         {
-            NumeroPedido = numeroPedido;
             TempoEspera = tempoEspera;
             DataCriacao = DateTime.UtcNow;
             ClienteId = clienteId;
