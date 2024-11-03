@@ -43,7 +43,7 @@ namespace Application.UseCases.Pedidos
                     pedidoOutput.Id = item.Id;
                     pedidoOutput.NumeroPedido = item.NumeroPedido;
                     pedidoOutput.TempoEspera = item.TempoEspera;
-                    pedidoOutput.ClienteId = item.ClienteId;
+                    pedidoOutput.ClienteId = (item.ClienteId == Guid.Empty) ? null : item.ClienteId;
                     pedidoOutput.PagamentoId = item.PagamentoId;
                     pedidoOutput.PedidoStatusId = item.PedidoStatusId;
                     pedidoOutput.SacolaId = item.SacolaId;
