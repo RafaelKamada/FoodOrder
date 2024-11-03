@@ -45,7 +45,7 @@
  ✔ Container orders.api          Started                                               1.7s 
  ```
 4. Acessar o Swagger: ```http://localhost:9000/swagger/index.html```
-5. Após a inicialização do Swagger, é preciso seguir as instruções da Documentação do Cadastro de Produto incluir o cadastro da maneira correta.
+5. Após a inicialização do Swagger, é preciso seguir as instruções da Documentação do Cadastro de Produto para cadastrar corretamente.
 
 ### :page_with_curl: Documentação do Cadastro de Produto
 [README de cadastro de produto](./Readme/README_PRODUTO.md)
