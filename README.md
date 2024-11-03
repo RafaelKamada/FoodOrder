@@ -33,8 +33,23 @@
     - docker-compose.yml para subir o ambiente completo ✔️
 
 ### :hammer_and_wrench: Execução do projeto
-1. Faça o clone do projeto: ```git@github.com:RafaelKamada/FoodOrder.git```
+1. Faça o clone do projeto: ```git clone git@github.com:RafaelKamada/FoodOrder.git```
 2. Rode o comando do docker-compose na raiz do projeto: ```docker-compose up -d```
+3. O projeto deverá iniciar os serviços, conforme abaixo:
+```
+☁  FoodOrder [alterar_readme] docker-compose up -d
+[+] Building 0.0s (0/0)                                                                     
+[+] Running 3/3
+ ✔ Network foodorder_default     Created                                               0.1s 
+ ✔ Container postgress.database  Started                                               1.1s 
+ ✔ Container orders.api          Started                                               1.7s 
+ ```
+4. Acessar o Swagger: ```http://localhost:9000/swagger/index.html```
+5. Após a inicialização do Swagger, é preciso seguir as instruções da Documentação do Cadastro de Produto para cadastrar corretamente.
+
+### :page_with_curl: Documentação do Cadastro de Produto
+[README de cadastro de produto](./Readme/README_PRODUTO.md)
+
 
 ### :busts_in_silhouette: Autores
 | [<img loading="lazy" src="https://avatars.githubusercontent.com/u/96452759?v=4" width=115><br><sub>Robson Vilaça - RM358345</sub>](https://github.com/vilacalima) |  [<img loading="lazy" src="https://avatars.githubusercontent.com/u/16946021?v=4" width=115><br><sub>Diego Gomes - RM358549</sub>](https://github.com/diegogl12) |  [<img loading="lazy" src="https://avatars.githubusercontent.com/u/8690168?v=4" width=115><br><sub>Nathalia Freire - RM359533</sub>](https://github.com/nathaliaifurita) |  [<img loading="lazy" src="https://avatars.githubusercontent.com/u/43392619?v=4" width=115><br><sub>Rafael Kamada - RM359345</sub>](https://github.com/RafaelKamada) |

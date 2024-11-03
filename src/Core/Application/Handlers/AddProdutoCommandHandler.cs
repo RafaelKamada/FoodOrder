@@ -46,7 +46,7 @@ namespace Application.Handlers
             if (string.IsNullOrWhiteSpace(request.Categoria))
                 throw new ArgumentException("Categoria não informada!");
 
-            var categoria = await _produtoUseCase.ConsultarCategoria(request.Categoria);
+            var categoria = await _produtoUseCase.ConsultarCategoria(request.Categoria.ToLower().Trim());
 
             return categoria ?? throw new KeyNotFoundException("Categoria não cadastrada!");
         }
@@ -59,7 +59,7 @@ namespace Application.Handlers
         /// <returns></returns>
         private async Task AdicionarImagensAoProduto(IEnumerable<IFormFile> arquivos, Produto produto)
         {
-            if (arquivos != null)
+            if (arquivos != null && arquivos.Count() > 0)
             {
                 foreach (var file in arquivos)
                 {
