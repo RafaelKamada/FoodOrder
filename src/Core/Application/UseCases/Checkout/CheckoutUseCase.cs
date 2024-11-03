@@ -65,7 +65,7 @@ namespace Application.UseCases.Checkout
                 {
                     Produto produto = await _produtoRepository.ConsultarPorId(id);
 
-                    if (produto == null)
+                    if (produto == null || produto?.Id <= 0)
                     {
                         throw new Exception($"Produto com ID: {id} não encontrado.");
                     }
@@ -86,7 +86,7 @@ namespace Application.UseCases.Checkout
                 Pagamento pagamento = new Pagamento(valorTotal, pagamentoStatus);
                 await _pagamentoRepository.Cadastrar(pagamento);
 
-                Pedido pedido = new Pedido(numeroPedido: 10, tempoEsperaMinutos, cliente.Id, pagamento.Id, pedidoStatus.Id, sacola.Id);
+                Pedido pedido = new Pedido(tempoEsperaMinutos, cliente.Id, pagamento.Id, pedidoStatus.Id, sacola.Id);
 
                 var pedidoCadastrado = await _pedidoRepository.Cadastrar(pedido);
 
