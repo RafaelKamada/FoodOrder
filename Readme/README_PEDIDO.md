@@ -12,7 +12,7 @@ Este guia descreve os passos necessários para realizar um fake checkout e lista
 - [Passo 2: Consultar Cliente](#passo-2-consultar-cliente)
 - [Passo 3: Fake Checkout sem CPF](#passo-3-fake-checkout-sem-cpf)
 - [Passo 4: Fake Checkout com CPF](#passo-4-fake-checkout-com-cpf)
-- [Passo 5: Lsitar Pedidos](#passo-5-listar-pedidos)
+- [Passo 5: Listar Pedidos](#passo-5-listar-pedidos)
 
 ---
 
