@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Infra.Data.Migrations
+namespace FoodOrder.Infra.Data.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration

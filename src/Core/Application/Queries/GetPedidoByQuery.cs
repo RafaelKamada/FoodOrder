@@ -1,7 +1,7 @@
-﻿using Application.Output;
+﻿using FoodOrder.Application.Output;
 using MediatR;
 
-namespace Application.Queries
+namespace FoodOrder.Application.Queries
 {
     public class GetPedidoByQuery : IRequest<List<PedidoOutput>>
     {

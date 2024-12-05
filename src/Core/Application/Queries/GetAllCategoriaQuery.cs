@@ -1,9 +1,8 @@
-﻿using Domain.Entities;
-using MediatR;
+﻿using MediatR;
 
-namespace Application.Commands
+namespace FoodOrder.Application.Commands
 {
-    public class GetAllCategoriaQuery : IRequest<List<Categoria>>
+    public class GetAllCategoriaQuery : IRequest<List<FoodOrder.Domain.Entities.Categoria>>
     {
         
     }

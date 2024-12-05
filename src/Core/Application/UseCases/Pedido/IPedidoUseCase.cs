@@ -1,6 +1,6 @@
-﻿using Application.Output;
+﻿using FoodOrder.Application.Output;
 
-namespace Application.UseCases.Pedidos
+namespace FoodOrder.Application.UseCases.Pedidos
 {
     public interface IPedidoUseCase
     {

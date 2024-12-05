@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Domain.Entities;
-using Infra.Data.Configurations;
+using FoodOrder.Domain.Entities;
+using FoodOrder.Infra.Data.Configurations;
 
-namespace Infra.Data.Context
+namespace FoodOrder.Infra.Data.Context
 {
     public class NpgsqlContext : DbContext
     {

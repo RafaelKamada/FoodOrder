@@ -1,7 +1,8 @@
-﻿using Domain.Entities;
-using Domain.Ports;
+﻿using FoodOrder.Domain.Entities;
+using FoodOrder.Domain.Interface;
+using FoodOrder.Domain.Ports;
 
-namespace Application.UseCases.Checkout
+namespace FoodOrder.Application.UseCases.Checkout
 {
     public class CheckoutUseCase : ICheckoutUseCase
     {

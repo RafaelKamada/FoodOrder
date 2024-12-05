@@ -1,5 +1,5 @@
 ﻿
-namespace Application.Output
+namespace FoodOrder.Application.Output
 {
     public class PedidoOutput
     {

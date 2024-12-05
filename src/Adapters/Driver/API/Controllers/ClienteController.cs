@@ -1,9 +1,9 @@
-﻿using Application.Commands;
-using Application.Queries;
+﻿using FoodOrder.Application.Queries;
+using FoodOrder.Application.Commands;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace API.Controllers
+namespace Foodorder.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]

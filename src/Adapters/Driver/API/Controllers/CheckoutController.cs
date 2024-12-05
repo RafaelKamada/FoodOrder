@@ -1,17 +1,17 @@
-﻿using Application.Commands;
+﻿using FoodOrder.Application.Commands;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace API.Controllers
+namespace Foodorder.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
     public class CheckoutController : Controller
     {
-        private readonly ILogger<ProdutoController> _logger;
+        private readonly ILogger<CheckoutController> _logger;
         private readonly IMediator _mediator;
 
-        public CheckoutController(IMediator mediator, ILogger<ProdutoController> logger)
+        public CheckoutController(IMediator mediator, ILogger<CheckoutController> logger)
         {
             _mediator = mediator;
             _logger = logger;

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
-namespace Domain.Entities
+namespace FoodOrder.Domain.Entities
 {
     public class PagamentoStatus
     {

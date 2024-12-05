@@ -1,6 +1,6 @@
-﻿using Domain.Entities;
+﻿using FoodOrder.Domain.Entities;
 
-namespace Application.UseCases.Checkout
+namespace FoodOrder.Application.UseCases.Checkout
 {
     public interface ICheckoutUseCase
     {

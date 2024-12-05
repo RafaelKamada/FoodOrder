@@ -1,8 +1,8 @@
-﻿using Application.Output;
-using Domain.Entities;
-using Domain.Ports;
+﻿using FoodOrder.Application.Output;
+using FoodOrder.Domain.Entities;
+using FoodOrder.Domain.Ports;
 
-namespace Application.UseCases.Pedidos
+namespace FoodOrder.Application.UseCases.Pedidos
 {
     public class PedidoUseCase : IPedidoUseCase
     {

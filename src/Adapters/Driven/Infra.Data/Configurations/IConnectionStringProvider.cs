@@ -1,4 +1,4 @@
-﻿namespace Infra.Data.Configurations
+﻿namespace FoodOrder.Infra.Data.Configurations
 {
     public interface IConnectionStringProvider
     {

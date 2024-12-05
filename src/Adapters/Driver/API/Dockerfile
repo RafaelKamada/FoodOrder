@@ -7,7 +7,7 @@ EXPOSE 8080
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["src/Adapters/Driver/API/API.csproj", "src/Adapters/Driver/API/"]
+COPY ["src/Adapters/Driver/API/API.csproj", "src/Adapters/Driver/API/"] 
 COPY ["src/Core/Application/Application.csproj", "src/Core/Application/"]
 COPY ["src/Core/Domain/Domain.csproj", "src/Core/Domain/"]
 COPY ["src/Adapters/Driven/Infra.Data/Infra.Data.csproj", "src/Adapters/Driven/Infra.Data/"]

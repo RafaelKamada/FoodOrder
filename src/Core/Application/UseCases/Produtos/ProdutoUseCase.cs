@@ -1,12 +1,7 @@
-﻿using Domain.Entities;
-using Domain.Ports;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FoodOrder.Domain.Entities;
+using FoodOrder.Domain.Ports;
 
-namespace Application.UseCases.Produtos
+namespace FoodOrder.Application.UseCases.Produtos
 {
     public class ProdutoUseCase : IProdutoUseCase
     {
@@ -41,33 +36,6 @@ namespace Application.UseCases.Produtos
             return _produtoRepository.Deletar(id);
         }
 
-        #endregion
-
-        #region CATEGORIA
-        public Task<Categoria> Cadastrar(Categoria categoria)
-        {
-            return _produtoRepository.Cadastrar(categoria);
-        }
-
-        public Task<Categoria> Atualizar(Categoria categoria)
-        {
-            return _produtoRepository.Atualizar(categoria);
-        }
-
-        public Task<Categoria> DeletarCategoria(int id)
-        {
-            return _produtoRepository.DeletarCategoria(id);
-        }
-
-        public Task<Categoria> ConsultarCategoria(string categoria)
-        {
-            return _produtoRepository.ConsultarCategoria(categoria);
-        }
-
-        public Task<List<Categoria>> ConsultarCategoria()
-        {
-            return _produtoRepository.ConsultarCategoria();
-        }
         #endregion
     }
 }

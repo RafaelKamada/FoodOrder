@@ -1,4 +1,4 @@
-﻿using Infra.Data.Configurations;
+﻿using FoodOrder.Infra.Data.Configurations;
 
 namespace API.Services;
 

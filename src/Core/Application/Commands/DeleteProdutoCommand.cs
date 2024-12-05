@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Application.Commands
+namespace FoodOrder.Application.Commands
 {
     public class DeleteProdutoCommand : IRequest<Unit>
     {

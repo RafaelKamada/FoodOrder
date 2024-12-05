@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace Infra.Data.Migrations
+namespace FoodOrder.Infra.Data.Migrations
 {
     /// <inheritdoc />
     public partial class cpf_unique : Migration

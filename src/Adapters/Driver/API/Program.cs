@@ -1,11 +1,17 @@
 using API.Services;
-using Application.UseCases.Checkout;
-using Application.UseCases.Clientes;
-using Application.UseCases.Pedidos;
-using Application.UseCases.Produtos;
-using Domain.Ports;
-using Infra.Data.Configurations;
-using Infra.Data.Repository;
+using FoodOrder.Application.UseCases.Checkout;
+using FoodOrder.Application.UseCases.Clientes;
+using FoodOrder.Application.UseCases.Pedidos;
+using FoodOrder.Application.UseCases.Produtos;
+using FoodOrder.Data.Repositorio.Cliente;
+using FoodOrder.Data.Repositorio.Pagamento;
+using FoodOrder.Data.Repositorio.Pedido;
+using FoodOrder.Data.Repositorio.Produto;
+using FoodOrder.Data.Repositorio.Sacola;
+using FoodOrder.Domain.Interface;
+using FoodOrder.Domain.Ports;
+using FoodOrder.Infra.Data.Configurations;
+using FoodOrder.Infra.Data.Repository;
 using Microsoft.EntityFrameworkCore;
 
 internal class Program
@@ -23,13 +29,15 @@ internal class Program
 
 
         builder.Services.AddTransient<IConnectionStringProvider, ConnectionStringProvider>();
-        builder.Services.AddDbContext<Infra.Data.Context.NpgsqlContext>(
+        builder.Services.AddDbContext<FoodOrder.Infra.Data.Context.NpgsqlContext>(
             options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
-        builder.Services.AddMediatR(config => config.RegisterServicesFromAssembly(typeof(Application.Commands.AddClienteCommand).Assembly));
+        builder.Services.AddMediatR(config => config.RegisterServicesFromAssembly(typeof(FoodOrder.Application.Commands.AddClienteCommand).Assembly));
         builder.Services.AddTransient<IClienteUseCase, ClienteUseCase>();
         builder.Services.AddTransient<IClienteRepository, ClienteRepository>();
         builder.Services.AddTransient<IProdutoUseCase, ProdutoUseCase>();
+        builder.Services.AddTransient<ICategoriaUseCase, CategoriaUseCase>();
         builder.Services.AddTransient<IProdutoRepository, ProdutoRepository>();
+        builder.Services.AddTransient<ICategoriaRepository, CategoriaRepository>();
         builder.Services.AddTransient<IPedidoUseCase, PedidoUseCase>();
         builder.Services.AddTransient<IPedidoRepository, PedidoRepository>();
         builder.Services.AddTransient<ICheckoutUseCase, CheckoutUseCase>();

@@ -1,12 +1,16 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
-namespace Domain.Entities
+namespace FoodOrder.Domain.Entities
 {
     public class Cliente
     {
         public Cliente()
         {
+            Cpf = string.Empty;
+            Nome = string.Empty;
+            Email = string.Empty;
+            DataCadastro = DateTime.UtcNow;
         }
 
         public Cliente(string cpf, string nome, string email)
