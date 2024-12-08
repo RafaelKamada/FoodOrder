@@ -25,6 +25,11 @@ namespace FoodOrder.Data.Repositorio.Pagamento
                 _context.PagamentoStatus.Add(pagamentoStatus);
                 await _context.SaveChangesAsync();
             }
+            else
+            {
+                return pagamentoStatusBase;
+            }
+
 
             return pagamentoStatus;
         }

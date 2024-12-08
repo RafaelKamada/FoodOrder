@@ -84,7 +84,7 @@ namespace FoodOrder.Application.UseCases.Checkout
 
                 //TODO: Validar quais status serão utilizados no status do pagamento.
                 PagamentoStatus pagamentoStatus = new PagamentoStatus("Concluído");
-                await _pagamentoStatusRepository.Cadastrar(pagamentoStatus);
+                pagamentoStatus = await _pagamentoStatusRepository.Cadastrar(pagamentoStatus);
 
                 Domain.Entities.Pagamento pagamento = new Domain.Entities.Pagamento(valorTotal, pagamentoStatus.Id);
                 await _pagamentoRepository.Cadastrar(pagamento);

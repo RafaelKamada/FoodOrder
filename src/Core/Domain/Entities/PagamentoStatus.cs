@@ -14,7 +14,7 @@ namespace FoodOrder.Domain.Entities
             DataCriacao = DateTime.UtcNow;
         }
 
-        [Key]
+        [Key, JsonIgnore]
         public int Id { get; set; }
 
         [Required]
