@@ -1,4 +1,5 @@
-﻿using FoodOrder.Domain.Entities;
+﻿using FoodOrder.Application.Output;
+using FoodOrder.Domain.Entities;
 using FoodOrder.Domain.Interface;
 using FoodOrder.Domain.Ports;
 
@@ -34,10 +35,11 @@ namespace FoodOrder.Application.UseCases.Checkout
             _pedidoStatusRepository = pedidoStatusRepository;
         }
 
-        public async Task<Pedido> Cadastrar(string cpf, List<int> produtosIds)
+        public async Task<CheckoutOutput> Cadastrar(string cpf, List<int> produtosIds)
         {
             try
             {
+                var checkout = new CheckoutOutput();
                 Decimal valorTotal = 0;
                 TimeSpan tempoEsperaMinutos = TimeSpan.Zero;
 
@@ -89,9 +91,9 @@ namespace FoodOrder.Application.UseCases.Checkout
 
                 Pedido pedido = new Pedido(tempoEsperaMinutos, cliente.Id, pagamento.Id, pedidoStatus.Id, sacola.Id);
 
-                var pedidoCadastrado = await _pedidoRepository.Cadastrar(pedido);
+                checkout.NumeroPedido = await _pedidoRepository.Cadastrar(pedido);
 
-                return pedidoCadastrado;
+                return checkout;
             }
             catch (Exception ex)
             {
