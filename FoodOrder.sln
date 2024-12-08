@@ -10,12 +10,18 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "testes", "testes", "{0E70512C-E9E2-4396-B608-AAB932EE19A8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodOrder.API", "src\Adapters\Driver\API\FoodOrder.API.csproj", "{3F142E8C-7BA6-43C3-8EE1-C85859949BE2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5D933F70-4E88-41F9-9D08-49FB5A7E1EA3} = {5D933F70-4E88-41F9-9D08-49FB5A7E1EA3}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodOrder.Application", "src\Core\Application\FoodOrder.Application.csproj", "{5D933F70-4E88-41F9-9D08-49FB5A7E1EA3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodOrder.Domain", "src\Core\Domain\FoodOrder.Domain.csproj", "{E247FA2F-0940-4959-83ED-D76357E2AFCE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodOrder.Data", "src\Adapters\Driven\Infra.Data\FoodOrder.Data.csproj", "{F0CC0B38-21CF-4CC0-A7D1-42A5AD77C693}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E247FA2F-0940-4959-83ED-D76357E2AFCE} = {E247FA2F-0940-4959-83ED-D76357E2AFCE}
+	EndProjectSection
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{525CD7ED-CBD3-4360-97A3-4FA224BAD745}"
 EndProject
