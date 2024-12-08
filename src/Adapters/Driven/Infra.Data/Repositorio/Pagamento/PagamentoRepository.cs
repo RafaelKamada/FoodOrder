@@ -1,6 +1,6 @@
-﻿using FoodOrder.Domain.Entities;
-using FoodOrder.Domain.Ports;
+﻿using FoodOrder.Domain.Ports;
 using FoodOrder.Infra.Data.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace FoodOrder.Data.Repositorio.Pagamento
 {
@@ -19,6 +19,12 @@ namespace FoodOrder.Data.Repositorio.Pagamento
 
             _context.Pagamento.Add(pagamento);
             await _context.SaveChangesAsync();
+            return pagamento;
+        }
+
+        public async Task<Domain.Entities.Pagamento> ConsultarPagamentoPorId(int id)
+        {
+            var pagamento = await _context.Pagamento.FirstOrDefaultAsync(x => x.Id == id);
             return pagamento;
         }
     }

@@ -34,5 +34,11 @@ namespace FoodOrder.Data.Repositorio.Pagamento
             var pagamentoStatus = await _context.PagamentoStatus.Where(x => x.Descricao == status).ToListAsync();
             return pagamentoStatus.FirstOrDefault();
         }
+
+        public async Task<PagamentoStatus> ConsultarPorId(int id)
+        {
+            var pagamentoStatus = await _context.PagamentoStatus.Where(x => x.Id == id).ToListAsync();
+            return pagamentoStatus.FirstOrDefault();
+        }
     }
 }

@@ -26,5 +26,10 @@ namespace FoodOrder.Data.Repositorio.Pedido
         {
             return await _context.Pedidos.ToListAsync();
         }
+
+        public async Task<Domain.Entities.Pedido> ConsultarPedidoPorNumero(int numeroPedido)
+        {
+            return await _context.Pedidos.FirstOrDefaultAsync(x => x.NumeroPedido == numeroPedido);
+        }
     }
 }
