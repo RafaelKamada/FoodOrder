@@ -21,8 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Core\Application\FoodOrder.Application.csproj" />
-    <ProjectReference Include="..\..\Driven\Infra.Data\FoodOrder.Data.csproj" />
+    <ProjectReference Include="..\..\Core\Application\FoodOrder.Application.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Infra.Data\FoodOrder.Data.csproj" />
   </ItemGroup>
 
 </Project>

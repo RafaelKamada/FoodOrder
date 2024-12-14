@@ -4,14 +4,14 @@ services:
     container_name: orders.api
     build:
       context: .
-      dockerfile: src/Adapters/Driver/API/Dockerfile
+      dockerfile: src/Presentation/API/Dockerfile
     ports:
         - "9000:9000"
     depends_on:
       - postgress.database
     command: >
       sh -c "until pg_isready -h postgress.database -p 5432 -U postgres; do echo 'Waiting for PostgreSQL...'; sleep 2; done &&
-      dotnet ef database update --project /app/src/Adapters/Driven/Infra.Data/Infra.Data.csproj --startup-project /app/src/Adapters/Driver/API/API.csproj &&
+      dotnet ef database update --project /FoodOrder/src/Infrastructure/Infra.Data/FoodOrder.Data.csproj --startup-project /FoodOrder/src/Presentation/API/FoodOrder.API.csproj &&
       dotnet API.dll"
 
 
