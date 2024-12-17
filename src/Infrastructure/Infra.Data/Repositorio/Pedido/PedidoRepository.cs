@@ -13,13 +13,13 @@ namespace FoodOrder.Data.Repositorio.Pedido
             _context = context;
         }
 
-        public async Task<Domain.Entities.Pedido> Cadastrar(Domain.Entities.Pedido pedido)
+        public async Task<int> Cadastrar(Domain.Entities.Pedido pedido)
         {
             if (pedido == null) throw new ArgumentNullException(nameof(pedido));
 
             _context.Pedidos.Add(pedido);
             await _context.SaveChangesAsync();
-            return pedido;
+            return pedido.NumeroPedido;
         }
 
         public async Task<List<Domain.Entities.Pedido>> ListarPedidos()
