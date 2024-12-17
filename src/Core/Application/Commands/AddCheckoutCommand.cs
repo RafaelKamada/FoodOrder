@@ -1,8 +1,9 @@
-﻿using MediatR;
+﻿using FoodOrder.Application.Output;
+using MediatR;
 
 namespace FoodOrder.Application.Commands
 {
-    public class AddCheckoutCommand : IRequest<Unit>
+    public class AddCheckoutCommand : IRequest<CheckoutOutput>
     {
         public required string Cpf { get; set; }
 

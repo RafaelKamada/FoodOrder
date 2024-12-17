@@ -26,8 +26,8 @@ namespace Foodorder.API.Controllers
         [Route("FakeCheckout")]
         public async Task<IActionResult> FakeCheckout([FromBody] AddCheckoutCommand command)
         {
-            await _mediator.Send(command);
-            return Ok();
+            var identificacaoPedido = await _mediator.Send(command);
+            return Ok(identificacaoPedido);
         }
     }
 }
