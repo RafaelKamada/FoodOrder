@@ -5,6 +5,7 @@ namespace FoodOrder.Domain.Ports
     public interface IPedidoRepository
     {
         Task<int> Cadastrar(Pedido pedido);
-        Task<List<Pedido>> ListarPedidos();
+        Task<List<Pedido>> ListarPedidos(); 
+        Task<Pedido> ConsultarPedidoPorNumero(int numeroPedido);
     }
 }
