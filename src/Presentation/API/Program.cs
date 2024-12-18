@@ -1,6 +1,7 @@
 using API.Services;
 using FoodOrder.Application.UseCases.Checkout;
 using FoodOrder.Application.UseCases.Clientes;
+using FoodOrder.Application.UseCases.Pagamento;
 using FoodOrder.Application.UseCases.Pedidos;
 using FoodOrder.Application.UseCases.Produtos;
 using FoodOrder.Data.Repositorio.Cliente;
@@ -43,6 +44,7 @@ internal class Program
         builder.Services.AddTransient<ICheckoutUseCase, CheckoutUseCase>();
         builder.Services.AddTransient<ISacolaRepository, SacolaRepository>();
         builder.Services.AddTransient<ISacolaProdutoRepository, SacolaProdutoRepository>();
+        builder.Services.AddTransient<IPagamentoUseCase, PagamentoUseCase>();
         builder.Services.AddTransient<IPagamentoRepository, PagamentoRepository>();
         builder.Services.AddTransient<IPagamentoStatusRepository, PagamentoStatusRepository>();
         builder.Services.AddTransient<IPedidoStatusRepository, PedidoStatusRepository>();

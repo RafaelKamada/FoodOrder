@@ -9,16 +9,12 @@ namespace FoodOrder.Domain.Entities
         {
         }
 
-        public Pagamento(decimal valor, PagamentoStatus pagamentoStatus)
+        public Pagamento(decimal valor, int pagamentoStatusId)
         {
-            Valor = valor;
-            Pagamento_Status = pagamentoStatus;
+            Valor = valor; 
+            PagamentoStatusId = pagamentoStatusId;
             DataCriacao = DateTime.UtcNow;
-
-            if (pagamentoStatus.Descricao == "Concluído")
-            {
-                DataPagamentoEfetuado = DateTime.UtcNow;
-            }
+            DataPagamentoEfetuado = DateTime.UtcNow;
         }
 
         [Key]
@@ -28,7 +24,7 @@ namespace FoodOrder.Domain.Entities
         public decimal Valor { get; set; }
 
         [ForeignKey("PagamentoStatusId")]
-        public PagamentoStatus Pagamento_Status { get; set; }
+        public int PagamentoStatusId { get; set; }
 
         public DateTime DataPagamentoEfetuado { get; set; }
 
