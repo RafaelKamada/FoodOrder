@@ -111,6 +111,9 @@ namespace FoodOrder.Application.UseCases.Checkout
                 try
                 {
                     var resultado = await _mercadoPagoExternalService.CriaPagamentoAsync(valorTotal, "Pedido_" + checkout.NumeroPedido);
+
+                    //TODO: Criar outro método para vincular o Id do pagamento do mercado pago ao pedido.
+                    //Esse método só atualiza o status conforme o id do mercado pago.
                     await _pagamentoRepository.AtualizarStatusPagamentoPorId(resultado.PaymentId, pagamentoStatus.Id);
 
                     checkout.QrCode = resultado.QrCode;
