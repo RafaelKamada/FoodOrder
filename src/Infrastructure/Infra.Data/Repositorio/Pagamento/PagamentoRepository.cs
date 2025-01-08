@@ -13,6 +13,19 @@ namespace FoodOrder.Data.Repositorio.Pagamento
             _context = context;
         }
 
+        public async Task<Domain.Entities.Pagamento> AtualizarStatusPagamentoPorId(string idPagamentoMercadoPago, int pagamentoStatusId)
+        {
+            var pagamento = await _context.Pagamento.FirstOrDefaultAsync(x => x.MercadoPagoId == idPagamentoMercadoPago);
+            
+            if (pagamento == null) throw new ArgumentNullException(nameof(pagamento));
+
+            pagamento.PagamentoStatusId = pagamentoStatusId;
+            
+            await _context.SaveChangesAsync();
+
+            return pagamento;
+        }
+
         public async Task<Domain.Entities.Pagamento> Cadastrar(Domain.Entities.Pagamento pagamento)
         {
             if (pagamento == null) throw new ArgumentNullException(nameof(pagamento));

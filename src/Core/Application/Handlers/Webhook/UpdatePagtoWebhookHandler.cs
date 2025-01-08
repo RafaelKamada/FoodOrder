@@ -15,7 +15,7 @@ namespace FoodOrder.Application.Handlers.Webhook
 
         public async Task<Unit> Handle(UpdatePagtoWebhookCommand request, CancellationToken cancellationToken)
         {
-            await _pagtoWebHookUseCase.AtualizarStatusPagamento("webhook");
+            await _pagtoWebHookUseCase.ExecuteAsync(request.Data.Id);
             return Unit.Value;
         }
     }

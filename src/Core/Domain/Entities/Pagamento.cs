@@ -25,6 +25,8 @@ namespace FoodOrder.Domain.Entities
 
         [ForeignKey("PagamentoStatusId")]
         public int PagamentoStatusId { get; set; }
+        
+        public string MercadoPagoId { get; set; }
 
         public DateTime DataPagamentoEfetuado { get; set; }
 
