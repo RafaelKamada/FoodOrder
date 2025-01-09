@@ -7,5 +7,6 @@ namespace FoodOrder.Domain.Ports
         Task<Pagamento> Cadastrar(Pagamento pagamento); 
         Task<Pagamento> ConsultarPagamentoPorId(int id);
         Task<Pagamento> AtualizarStatusPagamentoPorId(string idPagamentoMercadoPago, int pagamentoStatusId);
+        Task<Pagamento> VincularIdMercadoPago(string mercadoPagoId, int pagamentoId);
     }
 }

@@ -31,7 +31,8 @@ namespace FoodOrder.Data.External.MercadoPago
             try
             {
                 var accessToken = _configuration["MercadoPago:AccessToken"];
-                var url = "https://api.mercadopago.com/v1/payments";
+                var url = "https://run.mocky.io/v3/61a20a25-1916-46d2-a59e-125e5992aabe";
+                //var url = "https://api.mercadopago.com/v1/payments";
 
                 _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
@@ -61,7 +62,8 @@ namespace FoodOrder.Data.External.MercadoPago
             try
             {
                 var accessToken = _configuration["MercadoPago:AccessToken"];
-                var url = $"https://api.mercadopago.com/v1/payments/{paymentId}";
+                var url = $"https://run.mocky.io/v3/9dad049c-d48c-47f2-833d-a29ef385c9bb";
+                //var url = $"https://api.mercadopago.com/v1/payments/{paymentId}";
 
                 _httpClient.DefaultRequestHeaders.Authorization =
                     new AuthenticationHeaderValue("Bearer", accessToken);

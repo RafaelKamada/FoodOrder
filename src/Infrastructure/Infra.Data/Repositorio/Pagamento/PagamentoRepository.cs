@@ -40,5 +40,18 @@ namespace FoodOrder.Data.Repositorio.Pagamento
             var pagamento = await _context.Pagamento.FirstOrDefaultAsync(x => x.Id == id);
             return pagamento;
         }
+
+        public async Task<Domain.Entities.Pagamento> VincularIdMercadoPago(string mercadoPagoId, int pagamentoId)
+        {
+            var pagamento = await _context.Pagamento.FirstOrDefaultAsync(x => x.Id == pagamentoId);
+
+            if (pagamento == null) throw new ArgumentNullException(nameof(pagamento));
+
+            pagamento.MercadoPagoId = mercadoPagoId;
+
+            await _context.SaveChangesAsync();
+
+            return pagamento;
+        }
     }
 }

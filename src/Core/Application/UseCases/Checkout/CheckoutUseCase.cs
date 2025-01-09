@@ -98,7 +98,7 @@ namespace FoodOrder.Application.UseCases.Checkout
                 pedidoStatus = await _pedidoStatusRepository.Cadastrar(pedidoStatus);
 
                 //TODO: Validar quais status serão utilizados no status do pagamento.
-                PagamentoStatus pagamentoStatus = new PagamentoStatus("Gerado");
+                PagamentoStatus pagamentoStatus = new PagamentoStatus("pending");
                 pagamentoStatus = await _pagamentoStatusRepository.Cadastrar(pagamentoStatus);
 
                 Domain.Entities.Pagamento pagamento = new Domain.Entities.Pagamento(valorTotal, pagamentoStatus.Id);
@@ -112,9 +112,7 @@ namespace FoodOrder.Application.UseCases.Checkout
                 {
                     var resultado = await _mercadoPagoExternalService.CriaPagamentoAsync(valorTotal, "Pedido_" + checkout.NumeroPedido);
 
-                    //TODO: Criar outro método para vincular o Id do pagamento do mercado pago ao pedido.
-                    //Esse método só atualiza o status conforme o id do mercado pago.
-                    await _pagamentoRepository.AtualizarStatusPagamentoPorId(resultado.PaymentId, pagamentoStatus.Id);
+                    await _pagamentoRepository.VincularIdMercadoPago(resultado.PaymentId, pagamento.Id);
 
                     checkout.QrCode = resultado.QrCode;
                     checkout.QrCodeUrl = resultado.QrCodeUrl;
