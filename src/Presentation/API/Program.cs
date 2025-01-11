@@ -4,6 +4,8 @@ using FoodOrder.Application.UseCases.Clientes;
 using FoodOrder.Application.UseCases.Pagamento;
 using FoodOrder.Application.UseCases.Pedidos;
 using FoodOrder.Application.UseCases.Produtos;
+using FoodOrder.Application.UseCases.Webhook;
+using FoodOrder.Data.External.MercadoPago;
 using FoodOrder.Data.Repositorio.Cliente;
 using FoodOrder.Data.Repositorio.Pagamento;
 using FoodOrder.Data.Repositorio.Pedido;
@@ -47,8 +49,15 @@ internal class Program
         builder.Services.AddTransient<IPagamentoUseCase, PagamentoUseCase>();
         builder.Services.AddTransient<IPagamentoRepository, PagamentoRepository>();
         builder.Services.AddTransient<IPagamentoStatusRepository, PagamentoStatusRepository>();
-        builder.Services.AddTransient<IPedidoStatusRepository, PedidoStatusRepository>();
+        builder.Services.AddTransient<IPedidoStatusRepository, PedidoStatusRepository>(); 
 
+        builder.Services.AddTransient<IPagtoWebhookUseCase, PagtoWebhookUseCase>();
+        builder.Services.AddHttpClient<IMercadoPagoExternalService, MercadoPagoExternalService>();
+
+        builder.Services.AddLogging(configure => {
+            configure.AddConsole();
+            configure.AddDebug();
+        });
 
         var app = builder.Build();
 
