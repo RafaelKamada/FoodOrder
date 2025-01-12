@@ -1,34 +1,35 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-app
-  namespace: default
-  labels:
-    app: my-app
+  name: db-deployment
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: my-app
+      app: db
   template:
     metadata:
       labels:
-        app: my-app
+        app: db
     spec:
       containers:
-      - name: my-app-container
-        image: my-app-image:latest
+      - name: db-deployment
+        image: postgres:latest
         ports:
         - containerPort: 80
-        envFrom:
-        - configMapRef:
-            name: my-app-config
-        - secretRef:
-            name: my-app-secrets
-        resources:
-          requests:
-            cpu: "250m"
-            memory: "512Mi"
-          limits:
-            cpu: "500m"
-            memory: "1Gi"
+        env:
+          - name: POSTGRES_DB
+            valueFrom:
+              configMapKeyRef:
+                name: my-app-config
+                key: DB_NAME
+          - name: POSTGRES_USER
+            valueFrom:
+              configMapKeyRef:
+                name: my-app-config
+                key: DB_USER
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: my-app-secrets
+                key: DB_PASSWORD
