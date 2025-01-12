@@ -1,35 +1,50 @@
+
+yaml
+Copiar código
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: db-deployment
+  name: app-db-deployment
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: db
+      app: app-db
   template:
     metadata:
       labels:
-        app: db
+        app: app-db
     spec:
       containers:
-      - name: postgress.database
-        image: postgres:latest
-        ports:
-        - containerPort: 5432:5432
-        env:
-          - name: POSTGRES_DB
-            valueFrom:
-              configMapKeyRef:
-                name: my-app-config
-                key: DB_NAME
-          - name: POSTGRES_USER
-            valueFrom:
-              configMapKeyRef:
-                name: my-app-config
-                key: DB_USER
-          - name: POSTGRES_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: my-app-secrets
-                key: DB_PASSWORD
+        # Container da API
+        - name: api
+          image: your-docker-registry/api  # Substitua pelo nome do seu registry de imagens
+          ports:
+            - containerPort: 9000
+          envFrom:
+            - configMapRef:
+                name: db-config  # ConfigMap com DB_NAME e DB_USER
+            - secretRef:
+                name: db-secrets  # Secret com DB_PASSWORD
+
+          command:
+            - "sh"
+            - "-c"
+            - >
+              until pg_isready -h postgress.database -p 5432 -U postgres; do
+                echo 'Waiting for PostgreSQL...';
+                sleep 2;
+              done &&
+              dotnet ef database update --project /FoodOrder/src/Infrastructure/Infra.Data/FoodOrder.Data.csproj --startup-project /FoodOrder/src/Presentation/API/FoodOrder.API.csproj &&
+              dotnet API.dll
+
+        # Container do PostgreSQL
+        - name: postgress-database
+          image: postgres:latest
+          ports:
+            - containerPort: 5432
+          envFrom:
+            - configMapRef:
+                name: db-config  # ConfigMap com POSTGRES_DB e POSTGRES_USER
+            - secretRef:
+                name: db-secrets  # Secret com POSTGRES_PASSWORD
