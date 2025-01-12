@@ -1,6 +1,3 @@
-
-yaml
-Copiar código
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -17,26 +14,25 @@ spec:
     spec:
       containers:
         # Container da API
-        - name: api
-          image: your-docker-registry/api  # Substitua pelo nome do seu registry de imagens
+        - name: orders.api
+          image: ${DOCKER_REGISTRY-}api  # Substitua pelo nome do seu registry de imagens
+          build:
+            context: .
+            dockerfile: src/Presentation/API/Dockerfile
           ports:
             - containerPort: 9000
+          depends_on:
+            - postgress-database
           envFrom:
             - configMapRef:
                 name: db-config  # ConfigMap com DB_NAME e DB_USER
             - secretRef:
                 name: db-secrets  # Secret com DB_PASSWORD
 
-          command:
-            - "sh"
-            - "-c"
-            - >
-              until pg_isready -h postgress.database -p 5432 -U postgres; do
-                echo 'Waiting for PostgreSQL...';
-                sleep 2;
-              done &&
-              dotnet ef database update --project /FoodOrder/src/Infrastructure/Infra.Data/FoodOrder.Data.csproj --startup-project /FoodOrder/src/Presentation/API/FoodOrder.API.csproj &&
-              dotnet API.dll
+          command: >
+            sh -c "until pg_isready -h postgress.database -p 5432 -U postgres; do echo 'Waiting for PostgreSQL...'; sleep 2; done &&
+            dotnet ef database update --project /FoodOrder/src/Infrastructure/Infra.Data/FoodOrder.Data.csproj --startup-project /FoodOrder/src/Presentation/API/FoodOrder.API.csproj &&
+            dotnet API.dll"
 
         # Container do PostgreSQL
         - name: postgress-database
