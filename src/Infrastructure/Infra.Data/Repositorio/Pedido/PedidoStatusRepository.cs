@@ -37,5 +37,10 @@ namespace FoodOrder.Data.Repositorio.Pedido
             var pedidoStatus = await _context.PedidoStatus.Where(x => x.Descricao == status).ToListAsync();
             return pedidoStatus.FirstOrDefault();
         }
+
+        public async Task<PedidoStatus> ConsultarPorId(int id)
+        {
+            return await _context.PedidoStatus.FirstOrDefaultAsync(x => x.Id == id);
+        }
     }
 }
