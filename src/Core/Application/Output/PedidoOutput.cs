@@ -15,17 +15,30 @@ namespace FoodOrder.Application.Output
 
         public int? PagamentoId { get; set; }
 
-        public int? PedidoStatusId { get; set; }
+        public PedidoStatusOutput PedidoStatus { get; set; }
 
         public int? SacolaId { get; set; }
 
         public List<ProdutoOutput> Produtos {get;set;}
     }
 
+    public class PedidosOutput
+    {
+        public List<PedidoOutput> Pronto { get; set; }
+        public List<PedidoOutput> EmPreparo { get; set; }
+        public List<PedidoOutput> Recebido { get; set; }
+    }
+
     public class ProdutoOutput 
     {
         public int Id { get; set; }
         public string Nome { get; set; }
+        public string Descricao { get; set; }
+    }
+
+    public class PedidoStatusOutput
+    {
+        public int Id { get; set; }
         public string Descricao { get; set; }
     }
 
