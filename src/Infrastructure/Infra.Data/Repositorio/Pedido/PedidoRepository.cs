@@ -31,5 +31,11 @@ namespace FoodOrder.Data.Repositorio.Pedido
         {
             return await _context.Pedidos.FirstOrDefaultAsync(x => x.NumeroPedido == numeroPedido);
         }
+
+        public async Task Atualizar(Domain.Entities.Pedido pedido)
+        {
+            _context.Pedidos.Update(pedido);
+            await _context.SaveChangesAsync();
+        }
     }
 }
