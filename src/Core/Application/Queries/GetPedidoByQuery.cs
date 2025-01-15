@@ -3,7 +3,7 @@ using MediatR;
 
 namespace FoodOrder.Application.Queries
 {
-    public class GetPedidoByQuery : IRequest<List<PedidoOutput>>
+    public class GetPedidoByQuery : IRequest<PedidosOutput>
     {
     }
 }

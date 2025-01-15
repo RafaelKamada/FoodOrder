@@ -6,5 +6,6 @@ namespace FoodOrder.Domain.Ports
     {
         Task<PagamentoStatus> Cadastrar(PagamentoStatus pagamentoStatus); 
         Task<PagamentoStatus> ConsultarPorId(int id);
+        Task<PagamentoStatus> ConsultarPorStatus(string status);
     }
 }

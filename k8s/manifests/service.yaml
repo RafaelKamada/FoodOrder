@@ -1,15 +1,15 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-app-service
+  name: db-service
   namespace: default
   labels:
-    app: my-app
+    app: db
 spec:
-  type: LoadBalancer
+  type: NodePort
   selector:
-    app: my-app
+    app: db  # Alinhado com o label do Deployment
   ports:
   - protocol: TCP
-    port: 80
-    targetPort: 80
+    port: 5432         # Porta externa
+    targetPort: 5432   # Porta do container

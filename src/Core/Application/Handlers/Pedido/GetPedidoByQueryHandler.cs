@@ -5,7 +5,7 @@ using MediatR;
 
 namespace FoodOrder.Application.Handlers.Pedido
 {
-    public class GetPedidoByQueryHandler : IRequestHandler<GetPedidoByQuery, List<PedidoOutput>>
+    public class GetPedidoByQueryHandler : IRequestHandler<GetPedidoByQuery, PedidosOutput>
     {
         private readonly IPedidoUseCase _pedidoUseCase;
 
@@ -14,7 +14,7 @@ namespace FoodOrder.Application.Handlers.Pedido
             _pedidoUseCase = pedidoUseCase;
         }
 
-        public async Task<List<PedidoOutput>> Handle(GetPedidoByQuery request, CancellationToken cancellationToken)
+        public async Task<PedidosOutput> Handle(GetPedidoByQuery request, CancellationToken cancellationToken)
         {
             return await _pedidoUseCase.ListarPedidos();
         }
