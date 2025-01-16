@@ -32,7 +32,7 @@ spec:
                 sleep 2;
               done &&
               dotnet ef database update --project /FoodOrder/src/Infrastructure/Infra.Data/FoodOrder.Data.csproj --startup-project /FoodOrder/src/Presentation/API/FoodOrder.API.csproj &&
-              dotnet API.dll
+              dotnet FoodOrder.API.dll
 
         # Container do PostgreSQL
         - name: postgress-database
