@@ -6,7 +6,7 @@ metadata:
   labels:
     app: db
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: db  # Alinhado com o label do Deployment
   ports:

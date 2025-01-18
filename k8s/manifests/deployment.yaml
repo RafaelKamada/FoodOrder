@@ -13,6 +13,16 @@ spec:
         app: db  # Alinhado com o Service
     spec:
       containers:
+        # Container do PostgreSQL
+        - name: postgress-database
+          image: postgres:latest
+          ports:
+            - containerPort: 5432
+          envFrom:
+            - configMapRef:
+                name: db-config
+            - secretRef:
+                name: db-secrets
         # Container da API
         - name: orders-api
           image: vilacaro/api:latest
@@ -34,13 +44,3 @@ spec:
               dotnet ef database update --project /FoodOrder/src/Infrastructure/Infra.Data/FoodOrder.Data.csproj --startup-project /FoodOrder/src/Presentation/API/FoodOrder.API.csproj &&
               dotnet FoodOrder.API.dll
 
-        # Container do PostgreSQL
-        - name: postgress-database
-          image: postgres:latest
-          ports:
-            - containerPort: 5432
-          envFrom:
-            - configMapRef:
-                name: db-config
-            - secretRef:
-                name: db-secrets
