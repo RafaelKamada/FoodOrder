@@ -10,6 +10,11 @@ spec:
   selector:
     app: db  # Alinhado com o label do Deployment
   ports:
-  - protocol: TCP
-    port: 5432         # Porta externa
-    targetPort: 5432   # Porta do container
+  - name: postgres
+    protocol: TCP 
+    port: 5432
+    targetPort: 5432
+  - name: api
+    protocol: TCP 
+    port: 9000
+    targetPort: 9000

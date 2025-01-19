@@ -22,7 +22,23 @@ spec:
             - configMapRef:
                 name: db-config
             - secretRef:
-                name: db-secrets
+                name: db-secrets          
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-secrets
+                  key: POSTGRES_PASSWORD
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: db-config
+                  key: POSTGRES_DB
+            - name: POSTGRES_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: db-config
+                  key: POSTGRES_USER
         # Container da API
         - name: orders-api
           image: vilacaro/api:latest
@@ -32,15 +48,19 @@ spec:
             - configMapRef:
                 name: db-config
             - secretRef:
-                name: db-secrets
+                name: db-secrets      
+          env:
+            - name: ASPNETCORE_URLS
+              value: "http://0.0.0.0:9000"
+            - name: ConnectionStrings__DefaultConnection
+              valueFrom:
+                secretKeyRef:
+                  name: db-secrets
+                  key: PORTGRES_URL # value: "Host=db-service;Port=5432;Database=foodorderdb;Username=postgres;Password=postgres"
           command:
             - "sh"
             - "-c"
             - |
-              until pg_isready -h postgress-database -p 5432 -U postgres; do
-                echo 'Waiting for PostgreSQL...';
-                sleep 2;
-              done &&
-              dotnet ef database update --project /FoodOrder/src/Infrastructure/Infra.Data/FoodOrder.Data.csproj --startup-project /FoodOrder/src/Presentation/API/FoodOrder.API.csproj &&
+              echo "Iniciando API..." &&
               dotnet FoodOrder.API.dll
 
