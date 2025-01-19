@@ -32,7 +32,6 @@ namespace FoodOrder.Data.External.MercadoPago
             {
                 var accessToken = _configuration["MercadoPago:AccessToken"];
                 var url = _configuration["MercadoPago:EndPoints:CriarPagamento"];
-                //var url = "https://api.mercadopago.com/v1/payments";
 
                 _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
@@ -55,6 +54,38 @@ namespace FoodOrder.Data.External.MercadoPago
                 throw;
             }
 
+        }
+
+        public async Task<PagamentoResult> CriaPagamentoAsync(Pedido pedido, decimal amount, string description)
+        {
+            try
+            {
+                var accessToken = _configuration["MercadoPago:AccessToken"];
+                var url = _configuration["MercadoPago:EndPoints:CriarPagamento"]
+                            .Replace("{{user_id}}", "183150839")
+                            .Replace("{{external_pos_id}}", "FIAP001POS001");
+
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+
+                // Converte para o DTO específico do Mercado Pago
+                var mercadoPagoRequest = ConvertToMercadoPagoRequest(amount, description, pedido);
+
+                // Chama API externa
+                var response = await _httpClient.PostAsJsonAsync(url, mercadoPagoRequest);
+                response.EnsureSuccessStatusCode();
+
+                var content = await response.Content.ReadAsStringAsync();
+                //var paymentResponse = JsonSerializer.Deserialize<MercadoPagoPagamentoResponse>(content);
+                var paymentResponse = JsonSerializer.Deserialize<CriarPagamentoResponse>(content);
+
+                // Converte resposta da API para PaymentResult genérico
+                return ConvertToPaymentResult(paymentResponse);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Erro ao gerar pagamento {amount} - {description}");
+                throw;
+            }
         }
 
         public async Task<PaymentDetails> GetPagamentoDetalhesAsync(string paymentId)
@@ -101,6 +132,30 @@ namespace FoodOrder.Data.External.MercadoPago
             };
         }
 
+        // Método de conversão para request específico
+        private CriarPagamentoRequest ConvertToMercadoPagoRequest(decimal amount, string description, Pedido pedido)
+        {
+            return new CriarPagamentoRequest
+            {
+                ExternalReference = pedido.NumeroPedido.ToString(),
+                NotificationUrl = "https://www.yourdomain.com/ipn",
+                TotalAmount = amount,
+                Title = description,
+                Description = description,
+                Items = new List<MercadoPagoQrCodeItem>
+                {
+                    new MercadoPagoQrCodeItem
+                    {
+                        Title = "teste",
+                        Quantity = 1,
+                        UnitMeasure = "unit",
+                        UnitPrice = amount,
+                        TotalAmount = amount
+                    }
+                }
+            };
+        }
+
         // Método de conversão para result genérico
         private PagamentoResult ConvertToPaymentResult(MercadoPagoPagamentoResponse apiResponse)
         {
@@ -110,6 +165,16 @@ namespace FoodOrder.Data.External.MercadoPago
                 QrCode = apiResponse.point_of_interaction?.transaction_data?.qr_code,
                 QrCodeUrl = apiResponse.point_of_interaction?.transaction_data?.qr_code_base64,
                 Success = apiResponse.status == "approved"
+            };
+        }
+
+        // Método de conversão para result genérico
+        private PagamentoResult ConvertToPaymentResult(CriarPagamentoResponse apiResponse)
+        {
+            return new PagamentoResult
+            {
+                PaymentId = apiResponse.in_store_order_id,
+                QrCode = apiResponse.qr_data
             };
         }
     }

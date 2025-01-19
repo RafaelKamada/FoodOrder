@@ -7,5 +7,6 @@ namespace FoodOrder.Domain.Ports
     {
         Task<PaymentDetails> GetPagamentoDetalhesAsync(string paymentId);
         Task<PagamentoResult> CriaPagamentoAsync(decimal amount, string description);
+        Task<PagamentoResult> CriaPagamentoAsync(Pedido pedido, decimal amount, string description);
     }
 }

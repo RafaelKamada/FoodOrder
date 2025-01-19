@@ -27,6 +27,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodOrder.API", "src\Presen
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodOrder.Data", "src\Infrastructure\Infra.Data\FoodOrder.Data.csproj", "{EFCFE594-5A89-4D29-8C37-EF07A3DCAB74}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k8s", "k8s", "{7F1E2561-FADA-4E7D-A210-FF12470B16B9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "manifests", "manifests", "{8F592111-654B-403D-8D4D-C6A02C3F3C67}"
+	ProjectSection(SolutionItems) = preProject
+		db-configmap.yaml = db-configmap.yaml
+		db-secrets.yaml = db-secrets.yaml
+		deployment.yaml = deployment.yaml
+		hpa.yaml = hpa.yaml
+		service.yaml = service.yaml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +78,7 @@ Global
 		{7945D448-7F6A-4C78-8138-4616FE441FB1} = {5C3AD25E-232A-4BE7-9A59-6EA7A5006264}
 		{74FED03D-5157-45F3-AEDE-B141C6DD16CD} = {7945D448-7F6A-4C78-8138-4616FE441FB1}
 		{EFCFE594-5A89-4D29-8C37-EF07A3DCAB74} = {E110729E-0D8E-43CF-835A-1DB24C79373E}
+		{8F592111-654B-403D-8D4D-C6A02C3F3C67} = {7F1E2561-FADA-4E7D-A210-FF12470B16B9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {861AA798-E22B-42A6-B943-E39ECF834F3F}

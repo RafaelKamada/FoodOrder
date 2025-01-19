@@ -30,6 +30,9 @@ internal class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
+        builder.Logging.ClearProviders(); 
+        builder.Logging.AddConsole(); 
+        builder.Logging.AddConfiguration(builder.Configuration.GetSection("Logging"));
 
         builder.Services.AddTransient<IConnectionStringProvider, ConnectionStringProvider>();
         builder.Services.AddDbContext<FoodOrder.Infra.Data.Context.NpgsqlContext>(
@@ -57,7 +60,7 @@ internal class Program
         builder.Services.AddLogging(configure => {
             configure.AddConsole();
             configure.AddDebug();
-        });
+        }); 
 
         var app = builder.Build();
 

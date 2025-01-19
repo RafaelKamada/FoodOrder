@@ -1,7 +1,9 @@
 ﻿using FoodOrder.Application.Output;
 using FoodOrder.Domain.Entities;
+using FoodOrder.Domain.Entities.Result;
 using FoodOrder.Domain.Interface;
 using FoodOrder.Domain.Ports;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
 namespace FoodOrder.Application.UseCases.Checkout
@@ -18,6 +20,7 @@ namespace FoodOrder.Application.UseCases.Checkout
         private readonly IPagamentoStatusRepository _pagamentoStatusRepository;
         private readonly IPedidoStatusRepository _pedidoStatusRepository;
         private readonly IMercadoPagoExternalService _mercadoPagoExternalService;
+        private readonly IConfiguration _configuration;
 
         public CheckoutUseCase(ISacolaProdutoRepository sacolaProdutoRepository,
                                 ISacolaRepository sacolaRepository,
@@ -28,7 +31,8 @@ namespace FoodOrder.Application.UseCases.Checkout
                                 IPagamentoStatusRepository pagamentoStatusRepository,
                                 IPedidoStatusRepository pedidoStatusRepository,
                                 IMercadoPagoExternalService mercadoPagoExternalService,
-                                ILogger<CheckoutUseCase> logger)
+                                ILogger<CheckoutUseCase> logger,
+                                IConfiguration configuration)
         {
             _sacolaProdutoRepository = sacolaProdutoRepository;
             _sacolaRepository = sacolaRepository;
@@ -40,6 +44,7 @@ namespace FoodOrder.Application.UseCases.Checkout
             _pedidoStatusRepository = pedidoStatusRepository;
             _mercadoPagoExternalService = mercadoPagoExternalService;
             _logger = logger;
+            _configuration = configuration;
         }
 
         public async Task<CheckoutOutput> Cadastrar(string cpf, List<int> produtosIds)
@@ -110,7 +115,19 @@ namespace FoodOrder.Application.UseCases.Checkout
 
                 try
                 {
-                    var resultado = await _mercadoPagoExternalService.CriaPagamentoAsync(valorTotal, "Pedido_" + checkout.NumeroPedido);
+
+                    bool mercadoPagoEnabled = _configuration.GetValue<bool>("MercadoPago:Ativo");
+                    var resultado = new PagamentoResult();
+
+                    if (mercadoPagoEnabled)
+                    {
+                        resultado = await _mercadoPagoExternalService.CriaPagamentoAsync(pedido, valorTotal, "Pedido_" + checkout.NumeroPedido);
+                    }
+                    else
+                    {
+                        resultado = await _mercadoPagoExternalService.CriaPagamentoAsync(valorTotal, "Pedido_" + checkout.NumeroPedido);
+                    }
+
 
                     await _pagamentoRepository.VincularIdMercadoPago(resultado.PaymentId, pagamento.Id);
 
