@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pg-hba-config
+data:
+  pg_hba.conf: |
+    # Exemplo de configuração pg_hba.conf
+    # Permitir todas as conexões locais
+    local   all             all                                     trust
+    # Permitir conexões via TCP/IP
+    host    all             all             0.0.0.0/0            md5
+    host    all             all             ::/0                 md5
