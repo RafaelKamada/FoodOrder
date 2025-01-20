@@ -5,5 +5,5 @@ metadata:
 data:
   POSTGRES_DB: "foodorder"
   POSTGRES_USER: "postgres"
-  DB_NAME: "foodorder"
-  DB_USER: "postgres"
+  PORTGRES_URL: "SG9zdD1kYi1zZXJ2aWNlO1BvcnQ9NTQzMjtEYXRhYmFzZT1mb29kb3JkZXJkYjtVc2VybmFtZT1wb3N0Z3JlcztQYXNzd29yZD1wb3N0Z3Jlcw=="
+  

@@ -7,7 +7,7 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: app-db-deployment
+    name: api-db-deployment
   minReplicas: 1
   maxReplicas: 5
   metrics:
