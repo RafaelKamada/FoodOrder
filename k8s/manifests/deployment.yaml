@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-db-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db  # Alinhado com o Service
+  template:
+    metadata:
+      labels:
+        app: db  # Alinhado com o Service
+    spec:
+      containers:
+        # Container do PostgreSQL
+        - name: postgress-database
+          image: postgres:latest
+          ports:
+            - containerPort: 5432
+          envFrom:
+            - configMapRef:
+                name: db-config
+            - secretRef:
+                name: db-secrets          
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-secrets
+                  key: POSTGRES_PASSWORD
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: db-config
+                  key: POSTGRES_DB
+            - name: POSTGRES_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: db-config
+                  key: POSTGRES_USER
+        # Container da API
+        - name: orders-api
+          image: vilacaro/api:latest
+          ports:
+            - containerPort: 9000
+          envFrom:
+            - configMapRef:
+                name: db-config
+            - secretRef:
+                name: db-secrets      
+          env:
+            - name: ASPNETCORE_URLS
+              value: "http://0.0.0.0:9000"
+            - name: ConnectionStrings__DefaultConnection
+              valueFrom:
+                secretKeyRef:
+                  name: db-secrets
+                  key: PORTGRES_URL # value: "Host=db-service;Port=5432;Database=foodorderdb;Username=postgres;Password=postgres"
+          command:
+            - "sh"
+            - "-c"
+            - |
+              echo "Iniciando API..." &&
+              dotnet FoodOrder.API.dll
+
