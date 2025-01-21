@@ -13,6 +13,8 @@ Este guia descreve os passos necessários para realizar um fake checkout e lista
 - [Passo 3: Fake Checkout sem CPF](#passo-3-fake-checkout-sem-cpf)
 - [Passo 4: Fake Checkout com CPF](#passo-4-fake-checkout-com-cpf)
 - [Passo 5: Listar Pedidos](#passo-5-listar-pedidos)
+- [Passo 6: Consulta Status de Pagamento](#passo-6-consulta-status-de-pagamento)
+- [Passo 7: Atualizar Status do Pedido](#passo-7-atualizar-status-do-pedido)
 
 ---
 
@@ -106,48 +108,77 @@ Neste passo, você pode listar os pedidos criados no sistema. O JSON de retorno 
 #### Exemplo de JSON de Retorno:
 
 ```json
-[
-  {
-    "id": 1,
-    "numeroPedido": 1,
-    "tempoEspera": "00:20:00",
-    "dataCriacao": "0001-01-01T00:00:00",
-    "clienteId": null,
-    "pagamentoId": 1,
-    "pedidoStatusId": 1,
-    "sacolaId": 1,
-    "produtos": [
-      {
+{
+  "pronto": [],
+  "emPreparo": [
+    {
+      "id": 1,
+      "numeroPedido": 1,
+      "tempoEspera": "00:00:00",
+      "dataCriacao": "2025-01-21T22:48:02.220797Z",
+      "clienteId": null,
+      "pagamentoId": 1,
+      "pedidoStatus": {
         "id": 1,
-        "nome": "churros",
-        "descricao": "15 mini churros"
-      }
-    ]
-  },
-  {
-    "id": 2,
-    "numeroPedido": 2,
-    "tempoEspera": "00:40:00",
-    "dataCriacao": "0001-01-01T00:00:00",
-    "clienteId": "dd96b089-01e8-4e08-8927-5ad087f79c75",
-    "pagamentoId": 2,
-    "pedidoStatusId": 1,
-    "sacolaId": 2,
-    "produtos": [
-      {
-        "id": 1,
-        "nome": "churros",
-        "descricao": "15 mini churros"
+        "descricao": "Em preparação"
       },
-      {
-        "id": 1,
-        "nome": "churros",
-        "descricao": "15 mini churros"
-      }
-    ]
-  }
-]
+      "sacolaId": 1,
+      "produtos": [
+        {
+          "id": 1,
+          "nome": "frango",
+          "descricao": "ave assada"
+        }
+      ]
+    }
+  ],
+  "recebido": []
+}
 ```
+---
+
+### Passo 6: Consulta Status de Pagamento
+
+Neste passo é possível consulta o status do pagamento de um pedido após o seu checkout. O json de requisição necessita apenas do número do pedido.
+
+#### Exemplo de JSON de Requisição:
+```json
+{
+  "numeroPedido": 1
+}
+
+```
+![Print Swagger Retorno de consulta do status de pagamento de um pedido](./StatusPagamento.png)
+
+#### Exemplo de JSON de Resposta:
+```json
+{
+  "descricao": "pending"
+}
+
+```
+
+---
+
+### Passo 7: Atualizar Status do Pedido
+
+Este passo serve para atualizar o status de um pedido para:
+- preparado
+- emPreparo
+- recebido
+
+O json de requisição precisa do número do pedido e do status que deve ser atualizado.
+
+#### Exemplo de JSON de Requisição:
+```json
+{
+  "numeroPedido": 1,
+  "status": "pronto"
+}
+
+```
+![Print Swagger Retorno de update status de pedidos](./StatusPedido.png)
+
 ---
 
 Este README documenta o processo básico de checkout e consulta de pedidos em nosso sistema de forma clara e objetiva.
