@@ -51,6 +51,7 @@
 - [Documentação de cadastro de produto](./Readme/README_PRODUTO.md)
 - [Documentação para o Fake Checkout](./Readme/README_PEDIDO.md)
 - [Documentação de arquitetura](./Readme/README_ARQUITETURA.md)
+- [Youtube](https://www.youtube.com/watch?v=TIZCErpTQjM)
 
 
 ### :busts_in_silhouette: Autores
