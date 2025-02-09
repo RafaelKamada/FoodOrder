@@ -9,4 +9,4 @@ data:
   POSTGRES_USER: "postgres"
   DB_NAME: "foodorder"
   DB_USER: "postgres"
-  DB_CONNECTION_STRING: "Host=postgres-service;Port=5432;Database=foodorderdb;Username=postgres;Password=postgres"
+  DB_CONNECTION_STRING: "Host=a7e5a9e567c62462fb152b8defc63240-2070677733.us-east-1.elb.amazonaws.com;Port=5432;Database=foodorderdb;Username=postgres;Password=postgres"
