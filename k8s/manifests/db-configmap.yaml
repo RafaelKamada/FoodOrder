@@ -2,8 +2,11 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: db-config
+  labels:
+    name: db-config
 data:
   POSTGRES_DB: "foodorder"
   POSTGRES_USER: "postgres"
   DB_NAME: "foodorder"
   DB_USER: "postgres"
+  DB_CONNECTION_STRING: "Host=postgres-service;Port=5432;Database=foodorderdb;Username=postgres;Password=postgres"

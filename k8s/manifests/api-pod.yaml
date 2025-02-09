@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: api-pod
+  labels:
+    app: api-pod
+spec:
+  containers:
+    - name: api-pod-config
+      image: vilacaro/api:v1
+      ports:
+        - containerPort: 9000
+      env:
+        - name: ConnectionStrings__DefaultConnection
+          valueFrom:
+            configMapKeyRef:
+              name: db-config
+              key: DB_CONNECTION_STRING
+        - name: ASPNETCORE_URLS
+          value: "http://0.0.0.0:9000"
+      command: 
+        - "sh"
+        - "-c"
+        - |
+          echo "Iniciando API..." &&
+          dotnet FoodOrder.API.dll
