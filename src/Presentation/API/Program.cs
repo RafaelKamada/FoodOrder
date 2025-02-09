@@ -54,6 +54,8 @@ internal class Program
         builder.Services.AddTransient<IPagtoWebhookUseCase, PagtoWebhookUseCase>();
         builder.Services.AddHttpClient<IMercadoPagoExternalService, MercadoPagoExternalService>();
 
+        builder.Services.AddHealthChecks();
+
         builder.Services.AddLogging(configure => {
             configure.AddConsole();
             configure.AddDebug();
@@ -71,6 +73,9 @@ internal class Program
         app.ApplyMigrations();
         app.UseAuthorization();
         app.MapControllers();
+
+        //endpoint de health check
+        app.MapHealthChecks("/health");
 
         app.Run();
                 
