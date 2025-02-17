@@ -1,29 +1,29 @@
 ﻿using FoodOrder.Application.Commands;
+using FoodOrder.Application.DTOs;
 using FoodOrder.Application.UseCases.Produtos;
 using MediatR;
 
 namespace FoodOrder.Application.Handlers.Categoria
 {
-    public class GetAllCategoriaCommandHandler : IRequestHandler<GetAllCategoriaQuery, List<Domain.Entities.Categoria>>
+    public class GetAllCategoriaQueryHandler : IRequestHandler<GetAllCategoriaQuery, List<CategoriaResponse>>
     {
-        private readonly ICategoriaUseCase _produtoUseCase;
+        private readonly ICategoriaUseCase _categoriaUseCase;
 
-        public GetAllCategoriaCommandHandler(ICategoriaUseCase produtoUseCase)
+        public GetAllCategoriaQueryHandler(ICategoriaUseCase categoriaUseCase)
         {
-            _produtoUseCase = produtoUseCase;
+            _categoriaUseCase = categoriaUseCase;
         }
 
-        public async Task<List<Domain.Entities.Categoria>> Handle(GetAllCategoriaQuery request, CancellationToken cancellationToken)
+        public async Task<List<CategoriaResponse>> Handle(GetAllCategoriaQuery request, CancellationToken cancellationToken)
         {
-            try
+            var categorias = await _categoriaUseCase.Consultar();
+
+            return categorias.Select(c => new CategoriaResponse
             {
-                var categoria = await _produtoUseCase.Consultar();
-                return categoria;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+                Id = c.Id,
+                Nome = c.Nome,
+                Tipo = c.Tipo
+            }).ToList();
         }
     }
 }
