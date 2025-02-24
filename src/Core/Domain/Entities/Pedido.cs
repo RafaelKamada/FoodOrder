@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
-namespace Domain.Entities
+namespace FoodOrder.Domain.Entities
 {
     public class Pedido
     {

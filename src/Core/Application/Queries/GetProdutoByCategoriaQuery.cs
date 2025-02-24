@@ -1,7 +1,7 @@
-﻿using Domain.Entities;
+﻿using FoodOrder.Domain.Entities;
 using MediatR;
 
-namespace Application.Queries
+namespace FoodOrder.Application.Queries
 {
     public class GetProdutoByCategoriaQuery : IRequest<List<ProdutoDto>>
     {

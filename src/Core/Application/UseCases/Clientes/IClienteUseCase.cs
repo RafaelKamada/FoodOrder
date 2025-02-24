@@ -1,6 +1,6 @@
-﻿using Domain.Entities;
+﻿using FoodOrder.Domain.Entities;
 
-namespace Application.UseCases.Clientes
+namespace FoodOrder.Application.UseCases.Clientes
 {
     public interface IClienteUseCase
     {

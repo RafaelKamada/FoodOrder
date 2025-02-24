@@ -1,9 +1,12 @@
-﻿using Application.Output;
+﻿using FoodOrder.Application.Output;
 
-namespace Application.UseCases.Pedidos
+namespace FoodOrder.Application.UseCases.Pedidos
 {
     public interface IPedidoUseCase
     {
-        Task<List<PedidoOutput>> ListarPedidos();
+        Task<PedidosOutput> ListarPedidos();
+        Task<PedidoOutput> Consultar(int numeroPedido);
+        Task<PedidoStatusOutput> ConsultarStatus(string status);
+        Task Atualizar(PedidoOutput pedido);
     }
 }

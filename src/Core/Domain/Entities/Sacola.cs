@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Domain.Entities
+namespace FoodOrder.Domain.Entities
 {
     public class Sacola
     {

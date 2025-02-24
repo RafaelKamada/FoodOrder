@@ -1,9 +1,9 @@
-﻿using Domain.Entities;
+﻿using FoodOrder.Application.Output;
 
-namespace Application.UseCases.Checkout
+namespace FoodOrder.Application.UseCases.Checkout
 {
     public interface ICheckoutUseCase
     {
-        Task<Pedido> Cadastrar(string cpf, List<int> produtosIds);
+        Task<CheckoutOutput> Cadastrar(string cpf, List<int> produtosIds);
     }
 }
