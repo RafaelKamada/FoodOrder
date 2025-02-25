@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace Domain.Entities
+namespace FoodOrder.Domain.Entities
 {
     public class Categoria
     {
         public Categoria()
         {
+            Nome = string.Empty; 
+            Tipo = string.Empty;
         }
 
         public Categoria(string nome, string tipo)

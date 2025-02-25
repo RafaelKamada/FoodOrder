@@ -1,7 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using FoodOrder.Domain.Entities;
 
-namespace Domain.Entities
+namespace FoodOrder.Domain.Entities
 {
     public class ProdutoDto
     {

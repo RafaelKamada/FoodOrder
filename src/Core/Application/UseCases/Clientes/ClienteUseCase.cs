@@ -1,7 +1,7 @@
-﻿using Domain.Entities;
-using Domain.Ports;
+﻿using FoodOrder.Domain.Entities;
+using FoodOrder.Domain.Interface;
 
-namespace Application.UseCases.Clientes
+namespace FoodOrder.Application.UseCases.Clientes
 {
     public class ClienteUseCase : IClienteUseCase
     {

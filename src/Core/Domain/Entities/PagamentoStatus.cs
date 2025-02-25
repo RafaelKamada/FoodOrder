@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
-namespace Domain.Entities
+namespace FoodOrder.Domain.Entities
 {
     public class PagamentoStatus
     {
@@ -14,7 +14,7 @@ namespace Domain.Entities
             DataCriacao = DateTime.UtcNow;
         }
 
-        [Key]
+        [Key, JsonIgnore]
         public int Id { get; set; }
 
         [Required]
