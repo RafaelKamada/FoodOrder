@@ -10,9 +10,9 @@ namespace Foodorder.API.Controllers
     public class CategoriaController : ControllerBase
     {
         private readonly ILogger<CategoriaController> _logger;
-        private readonly CategoriaApplicationController _appController;
+        private readonly CategoriaApplicationService _appController;
 
-        public CategoriaController(ILogger<CategoriaController> logger, CategoriaApplicationController appController)
+        public CategoriaController(ILogger<CategoriaController> logger, CategoriaApplicationService appController)
         {
             _logger = logger;
             _appController = appController;

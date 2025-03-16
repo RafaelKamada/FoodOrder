@@ -1,38 +1,33 @@
-﻿using FoodOrder.Application.Queries;
-using FoodOrder.Application.Commands;
-using MediatR;
+﻿using FoodOrder.Application.Commands;
+using FoodOrder.Application.Controller;
+using FoodOrder.Application.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Foodorder.API.Controllers
+namespace FoodOrder.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class PedidoController : Controller
+    public class PedidoController : ControllerBase
     {
-        private readonly ILogger<PedidoController> _logger;
-        private readonly IMediator _mediator;
+        private readonly PedidoApplicationService _pedidoService;
 
-        public PedidoController(IMediator mediator, ILogger<PedidoController> logger)
+        public PedidoController(PedidoApplicationService pedidoService)
         {
-            _mediator = mediator;
-            _logger = logger;
+            _pedidoService = pedidoService;
         }
 
-        [HttpGet]
-        [Route("ListarPedidos")]
+        [HttpGet("ListarPedidos")]
         public async Task<IActionResult> ListarPedidos()
         {
-            var query = new GetPedidoByQuery();
-            var cliente = await _mediator.Send(query);
-            return Ok(cliente);
+            var pedidos = await _pedidoService.ListarPedidos();
+            return Ok(pedidos);
         }
 
-        [HttpPut]
-        [Route("AtualizarStatusPedido")]
+        [HttpPut("AtualizarStatusPedido")]
         public async Task<IActionResult> AtualizarStatusPedido([FromBody] UpdateStatusPedidoCommand command)
         {
-            var result = await _mediator.Send(command);
-            return Ok(result);
+            var pedido = await _pedidoService.AtualizarStatus(command);
+            return Ok(pedido);
         }
     }
 }

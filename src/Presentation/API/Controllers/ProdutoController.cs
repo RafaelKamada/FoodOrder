@@ -1,53 +1,48 @@
-﻿using FoodOrder.Application.Queries;
-using FoodOrder.Application.Commands;
-using MediatR;
+﻿using FoodOrder.Application.Commands;
+using FoodOrder.Application.Controller;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Foodorder.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class ProdutoController : Controller
+    public class ProdutoController : ControllerBase
     {
-        private readonly ILogger<ProdutoController> _logger;
-        private readonly IMediator _mediator;
+        private readonly ProdutoApplicationService _produtoService;
 
-        public ProdutoController(ILogger<ProdutoController> logger, IMediator mediator)
+        public ProdutoController(ProdutoApplicationService produtoService)
         {
-            _logger = logger;
-            _mediator = mediator;
+            _produtoService = produtoService;
         }
 
         [HttpPost]
         [Consumes("multipart/form-data")]
-        public async Task<IActionResult> Produto([FromForm] AddProdutoCommand command)
+        public async Task<IActionResult> AdicionarProduto([FromForm] AddProdutoCommand command)
         {
-            await _mediator.Send(command);
-            return Ok();
+            var produto = await _produtoService.AdicionarProduto(command);
+            return Ok(produto);
         }
 
         [HttpPut]
         [Consumes("multipart/form-data")]
-        public async Task<IActionResult> Atualizar([FromForm] UpdateProdutoCommand command)
+        public async Task<IActionResult> AtualizarProduto([FromForm] UpdateProdutoCommand command)
         {
-            await _mediator.Send(command);
-            return Ok();
+            var produto = await _produtoService.AtualizarProduto(command);
+            return Ok(produto);
         }
 
         [HttpDelete]
-        public async Task<IActionResult> Deletar([FromBody] DeleteProdutoCommand command)
+        public async Task<IActionResult> DeletarProduto([FromBody] DeleteProdutoCommand command)
         {
-            await _mediator.Send(command);
+            await _produtoService.DeletarProduto(command);
             return Ok();
         }
 
-        [HttpGet]
-        [Route("ConsultarPorCategoria/{categoria}")]
+        [HttpGet("ConsultarPorCategoria/{categoria}")]
         public async Task<IActionResult> ConsultarPorCategoria(string categoria)
         {
-            var query = new GetProdutoByCategoriaQuery(categoria);
-            var produto = await _mediator.Send(query);
-            return Ok(produto);
+            var produtos = await _produtoService.ConsultarPorCategoria(categoria);
+            return Ok(produtos);
         }
     }
 }

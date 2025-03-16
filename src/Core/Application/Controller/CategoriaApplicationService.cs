@@ -4,11 +4,11 @@ using MediatR;
 
 namespace FoodOrder.Application.Controller
 {
-    public class CategoriaApplicationController
+    public class CategoriaApplicationService
     {
         private readonly IMediator _mediator;
 
-        public CategoriaApplicationController(IMediator mediator)
+        public CategoriaApplicationService(IMediator mediator)
         {
             _mediator = mediator;
         }
