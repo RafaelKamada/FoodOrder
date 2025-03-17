@@ -6,8 +6,9 @@
 Este documento descreve o banco de dados para a aplicação. A modelagem foi feita com base nas entidades principais e seus relacionamentos, buscando garantir integridade dos dados e eficiência nas consultas.
 ```
 
-![Desenho do banco de dados]
-(DB.jpg)
+## UML
+
+![Desenho do banco de dados](./BancoDeDados.png)
 
 ## Entidades
 

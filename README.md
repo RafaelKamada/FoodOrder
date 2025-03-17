@@ -51,6 +51,7 @@
 - [Documentação de cadastro de produto](./Readme/README_PRODUTO.md)
 - [Documentação para o Fake Checkout](./Readme/README_PEDIDO.md)
 - [Documentação de arquitetura](./Readme/README_ARQUITETURA.md)
+- [Documentação do banco de dados](./Readme/README_DB.md)
 - [Youtube](https://www.youtube.com/watch?v=TIZCErpTQjM)
 
 
