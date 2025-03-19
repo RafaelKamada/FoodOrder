@@ -20,7 +20,7 @@ Este documento descreve o banco de dados para a aplicação. A modelagem foi fei
 - Email: Email do cliente.
 - DataCadastro: Data do registro do cliente.
 
-### Pedidos
+### Pedido
 
 - Id: Identificador único do pedido.
 - NumeroPedido: Número sequencial do pedido.
@@ -49,7 +49,7 @@ Este documento descreve o banco de dados para a aplicação. A modelagem foi fei
 ### PedidoStatus
 
 - Id: Identificador único do status do pedido.
-Descricao: Descrição do status (Ex: Em preparo, Enviado, Entregue).
+- Descricao: Descrição do status (Ex: Em preparo, Enviado, Entregue).
 - DataCriacao: Data de criação do status.
 
 ### Sacola
@@ -57,7 +57,7 @@ Descricao: Descrição do status (Ex: Em preparo, Enviado, Entregue).
 - Id: Identificador único da sacola.
 - DataCriacao: Data de criação da sacola.
 
-SacolaProduto
+### SacolaProduto
 
 - Id: Identificador único.
 - SacolaId: Referência à sacola associada.
