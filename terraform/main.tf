@@ -1,3 +1,17 @@
+resource "aws_eks_cluster" "eks-cluster" {
+  name     = var.projectName
+  role_arn = var.labRole
+  
+  vpc_config {
+    subnet_ids         = aws_subnet.private_subnets[*].id
+    security_group_ids = [aws_security_group.sg.id]
+  }
+
+  access_config {
+    authentication_mode = var.accessConfig
+  }
+}
+
 resource "aws_eks_node_group" "eks-node" {
   cluster_name    = aws_eks_cluster.eks-cluster.name
   node_group_name = var.nodeGroup
@@ -14,19 +28,5 @@ resource "aws_eks_node_group" "eks-node" {
 
   update_config {
     max_unavailable = 1
-  }
-}
-
-resource "aws_eks_cluster" "eks-cluster" {
-  name     = var.projectName
-  role_arn = var.labRole
-  
-  vpc_config {
-    subnet_ids         = aws_subnet.private_subnets[*].id
-    security_group_ids = [aws_security_group.sg.id]
-  }
-
-  access_config {
-    authentication_mode = var.accessConfig
   }
 }
