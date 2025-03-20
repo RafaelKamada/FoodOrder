@@ -4,14 +4,6 @@ provider "aws" {
 }
 
 
-output "private_subnet_ids" {
-  value = aws_subnet.private_subnets[*].id
-}
-
-output "public_subnet_ids" {
-  value = aws_subnet.public_subnets[*].id
-}
-
 resource "aws_eks_access_policy_association" "eks-access-policy" {
   cluster_name  = aws_eks_cluster.eks-cluster.name
   policy_arn    = var.policyArn
