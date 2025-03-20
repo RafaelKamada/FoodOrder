@@ -1,9 +1,3 @@
-
-provider "aws" {
-  region = var.regionDefault
-}
-
-
 resource "aws_eks_access_policy_association" "eks-access-policy" {
   cluster_name  = aws_eks_cluster.eks-cluster.name
   policy_arn    = var.policyArn
