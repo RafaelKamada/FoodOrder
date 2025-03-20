@@ -17,7 +17,8 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1   
+          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}  # Aqui você adiciona o token de sessão temporária
+          aws-region: us-east-1
 
       - name: Configurar Kubectl para acessar o EKS
         run: |
