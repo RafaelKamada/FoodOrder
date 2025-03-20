@@ -11,7 +11,7 @@ resource "aws_eks_cluster" "eks-cluster" {
     authentication_mode = var.accessConfig
   }
 }
- 
+
 resource "aws_eks_node_group" "eks-node" {
   cluster_name    = aws_eks_cluster.eks-cluster.name
   node_group_name = var.nodeGroup
