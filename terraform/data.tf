@@ -31,6 +31,14 @@ resource "aws_subnet" "private_subnets" {
   }
 }
 
+resource "aws_internet_gateway" "main" {
+  vpc_id = aws_vpc.main_vpc.id
+
+  tags = {
+    Name = "Main Internet Gateway"
+  }
+}
+
 resource "aws_eip" "nat_public" {
   domain = "vpc"
 }
