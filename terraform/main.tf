@@ -26,19 +26,19 @@ resource "aws_eks_addon" "vpc_cni" {
   addon_name   = "vpc-cni"
 }
 
-resource "aws_eks_addon" "node_monitoring" {
+resource "aws_eks_addon" "eks-node-monitoring-agent" {
   cluster_name = aws_eks_cluster.eks-cluster.name
-  addon_name   = "node-monitoring"
+  addon_name   = "eks-node-monitoring-agent"
 }
 
-resource "aws_eks_addon" "core_dns" {
+resource "aws_eks_addon" "coredns" {
   cluster_name = aws_eks_cluster.eks-cluster.name
-  addon_name   = "core-dns"
+  addon_name   = "coredns"
 }
 
-resource "aws_eks_addon" "pod_identity" {
+resource "aws_eks_addon" "eks-pod-identity-agent" {
   cluster_name = aws_eks_cluster.eks-cluster.name
-  addon_name   = "eks-pod-identity"
+  addon_name   = "eks-pod-identity-agent"
 }
 
 resource "aws_eks_node_group" "eks-node" {
