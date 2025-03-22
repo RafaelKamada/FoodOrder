@@ -31,13 +31,30 @@ resource "aws_subnet" "private_subnets" {
   }
 }
 
-resource "aws_eip" "nat" {
+resource "aws_eip" "nat_public" {
   domain = "vpc"
 }
 
-resource "aws_nat_gateway" "nat" {
-  allocation_id = aws_eip.nat.id
+resource "aws_nat_gateway" "nat_public" {
+  allocation_id = aws_eip.nat_public.id
   subnet_id     = aws_subnet.public_subnets[0].id
+
+  tags = {
+    Name = "NAT Gateway Public"
+  }
+}
+
+resource "aws_eip" "nat_private" {
+  domain = "vpc"
+}
+
+resource "aws_nat_gateway" "nat_private" {
+  allocation_id = aws_eip.nat_private.id
+  subnet_id     = aws_subnet.public_subnets[1].id
+
+  tags = {
+    Name = "NAT Gateway Private"
+  }
 }
 
 resource "aws_route_table" "private_rt" {
@@ -47,7 +64,7 @@ resource "aws_route_table" "private_rt" {
 resource "aws_route" "private_nat_gateway" {
   route_table_id         = aws_route_table.private_rt.id
   destination_cidr_block = "0.0.0.0/0"
-  nat_gateway_id         = aws_nat_gateway.nat.id
+  nat_gateway_id         = aws_nat_gateway.nat_public.id
 }
 
 resource "aws_route_table_association" "private" {
