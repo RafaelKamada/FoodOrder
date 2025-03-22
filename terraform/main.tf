@@ -17,6 +17,31 @@ resource "aws_eks_cluster" "eks-cluster" {
 
 }
 
+resource "aws_eks_addon" "kube_proxy" {
+  cluster_name = aws_eks_cluster.eks-cluster.name
+  addon_name   = "kube-proxy"
+}
+
+resource "aws_eks_addon" "vpc_cni" {
+  cluster_name = aws_eks_cluster.eks-cluster.name
+  addon_name   = "vpc-cni"
+}
+
+resource "aws_eks_addon" "node_monitoring" {
+  cluster_name = aws_eks_cluster.eks-cluster.name
+  addon_name   = "node-monitoring"
+}
+
+resource "aws_eks_addon" "core_dns" {
+  cluster_name = aws_eks_cluster.eks-cluster.name
+  addon_name   = "core-dns"
+}
+
+resource "aws_eks_addon" "pod_identity" {
+  cluster_name = aws_eks_cluster.eks-cluster.name
+  addon_name   = "eks-pod-identity"
+}
+
 resource "aws_eks_node_group" "eks-node" {
   cluster_name    = aws_eks_cluster.eks-cluster.name
   node_group_name = var.nodeGroup
