@@ -10,6 +10,11 @@ resource "aws_eks_cluster" "eks-cluster" {
   access_config {
     authentication_mode = var.accessConfig
   }
+
+  tags = {
+    "eks.amazonaws.com/compute-type" = "ec2"  # Garante que não será "Fargate" Auto Mode
+  }
+
 }
 
 resource "aws_eks_node_group" "eks-node" {
@@ -29,4 +34,10 @@ resource "aws_eks_node_group" "eks-node" {
   update_config {
     max_unavailable = 1
   }
+
+  # Adicionando um label para evitar o modo gerenciado automático
+  labels = {
+    "eks.amazonaws.com/nodegroup-type" = "self-managed"
+  }
+
 }
