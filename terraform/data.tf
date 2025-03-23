@@ -43,16 +43,16 @@ resource "aws_internet_gateway" "main" {
   }
 }
 
-resource "aws_eip" "nat_public" {
+resource "aws_eip" "eip_public_1" {
   domain = "vpc"
 
   tags = {
-    Name = "nat_public"
+    Name = "eip_public_1"
   }
 }
 
 resource "aws_nat_gateway" "nat_public" {
-  allocation_id = aws_eip.nat_public.id
+  allocation_id = aws_eip.eip_public_1.id
   subnet_id     = aws_subnet.public_subnets[0].id
 
   tags = {
@@ -60,16 +60,16 @@ resource "aws_nat_gateway" "nat_public" {
   }
 }
 
-resource "aws_eip" "nat_private" {
+resource "aws_eip" "eip_public_2" {
   domain = "vpc"
 
   tags = {
-    Name = "nat_private"
+    Name = "eip_public_2"
   }
 }
 
 resource "aws_nat_gateway" "nat_private" {
-  allocation_id = aws_eip.nat_private.id
+  allocation_id = aws_eip.eip_public_2.id
   subnet_id     = aws_subnet.public_subnets[1].id
 
   tags = {
