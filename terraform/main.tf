@@ -11,11 +11,6 @@ resource "aws_eks_cluster" "eks-cluster" {
     authentication_mode = var.accessConfig
   }
 
-  # Política de upgrade
-  upgrade_config {
-    upgrade_policy  = "Standard"  # Define a política de upgrade como Standard
-  }
-
   tags = {
     "eks.amazonaws.com/compute-type" = "ec2"  # Garante que não será "Fargate" Auto Mode
   }
