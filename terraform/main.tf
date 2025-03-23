@@ -53,7 +53,7 @@ resource "aws_eks_node_group" "eks-node" {
   node_group_name = var.nodeGroup
   node_role_arn   = var.labRole
   subnet_ids      = aws_subnet.private_subnets[*].id
-  disk_size       = 50
+  disk_size       = 20
   instance_types  = [var.instanceType]
 
   scaling_config {
