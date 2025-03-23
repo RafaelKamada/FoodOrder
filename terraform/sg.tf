@@ -25,7 +25,7 @@ resource "aws_security_group" "sg" {
     from_port   = 9000
     to_port     = 9000
     protocol    = "tcp"
-    security_groups = [aws_security_group.sg.id]  # Referenciando o próprio SG
+    self        = true
   }
 
   ingress {
@@ -33,7 +33,7 @@ resource "aws_security_group" "sg" {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"  # -1 significa "todos os protocolos"
-    security_groups = [aws_security_group.sg.id]  # Referenciando o próprio SG
+    self        = true
   }
 
   ingress {
@@ -41,7 +41,7 @@ resource "aws_security_group" "sg" {
     from_port   = 5432
     to_port     = 5432
     protocol    = "tcp"
-    security_groups = [aws_security_group.sg.id]  # Referenciando o próprio SG
+    self        = true
   }
 
   # Outbound
