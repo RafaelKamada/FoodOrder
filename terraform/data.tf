@@ -16,6 +16,8 @@ resource "aws_subnet" "public_subnets" {
   tags = {
     Name        = "Public Subnet ${count.index + 1}"
     Environment = "public"
+    "kubernetes.io/role/elb"   = "1"
+    "kubernetes.io/cluster/${var.projectName}" = "shared"
   }
 }
 
@@ -28,6 +30,8 @@ resource "aws_subnet" "private_subnets" {
   tags = {
     Name        = "Private Subnet ${count.index + 1}"
     Environment = "private"
+    "kubernetes.io/role/internal-elb"   = "1"
+    "kubernetes.io/cluster/${var.projectName}" = "shared"
   }
 }
 
