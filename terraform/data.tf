@@ -41,6 +41,10 @@ resource "aws_internet_gateway" "main" {
 
 resource "aws_eip" "nat_public" {
   domain = "vpc"
+
+  tags = {
+    Name = "nat_public"
+  }
 }
 
 resource "aws_nat_gateway" "nat_public" {
@@ -54,6 +58,10 @@ resource "aws_nat_gateway" "nat_public" {
 
 resource "aws_eip" "nat_private" {
   domain = "vpc"
+
+  tags = {
+    Name = "nat_private"
+  }
 }
 
 resource "aws_nat_gateway" "nat_private" {
@@ -67,6 +75,10 @@ resource "aws_nat_gateway" "nat_private" {
 
 resource "aws_route_table" "private_rt" {
   vpc_id = aws_vpc.main_vpc.id
+
+  tags = {
+    Name = "private_route"
+  }
 }
 
 resource "aws_route" "private_nat_gateway" {
