@@ -56,7 +56,7 @@ resource "aws_nat_gateway" "nat_public" {
   subnet_id     = aws_subnet.public_subnets[0].id
 
   tags = {
-    Name = "NAT Gateway Public"
+    Name = "NAT Gateway Public 1"
   }
 }
 
@@ -73,7 +73,7 @@ resource "aws_nat_gateway" "nat_private" {
   subnet_id     = aws_subnet.public_subnets[1].id
 
   tags = {
-    Name = "NAT Gateway Private"
+    Name = "NAT Gateway Public 2"
   }
 }
 
