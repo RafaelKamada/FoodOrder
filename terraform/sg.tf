@@ -20,6 +20,30 @@ resource "aws_security_group" "sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  ingress {
+    description = "Allow TCP traffic on port 9000 from this security group"
+    from_port   = 9000
+    to_port     = 9000
+    protocol    = "tcp"
+    security_groups = [aws_security_group.sg.id]  # Referenciando o próprio SG
+  }
+
+  ingress {
+    description = "Allow all traffic from this security group"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"  # -1 significa "todos os protocolos"
+    security_groups = [aws_security_group.sg.id]  # Referenciando o próprio SG
+  }
+
+  ingress {
+    description = "Allow PostgreSQL traffic on port 5432 from this security group"
+    from_port   = 5432
+    to_port     = 5432
+    protocol    = "tcp"
+    security_groups = [aws_security_group.sg.id]  # Referenciando o próprio SG
+  }
+
   # Outbound
   egress {
     description = "All"
