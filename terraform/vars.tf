@@ -34,3 +34,7 @@ variable "private_subnet_ids" {
   description = "Lista de subnets privadas"
   default     = []
 }
+
+variable "environment" {
+  default = "Production-2"
+}
