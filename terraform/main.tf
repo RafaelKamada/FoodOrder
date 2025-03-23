@@ -61,6 +61,8 @@ resource "aws_eks_node_group" "eks-node" {
     max_size     = 2
   }
 
+  security_group_ids = [aws_security_group.sg.id]
+
   update_config {
     max_unavailable = 1
   }
