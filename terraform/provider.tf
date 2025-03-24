@@ -9,5 +9,5 @@ provider "aws" {
 #     api_version = "client.authentication.k8s.io/v1beta1"
 #     args        = ["eks", "get-token", "--cluster-name", aws_eks_cluster.eks-cluster.name]
 #     command     = "aws"
-#   }
+#   } 
 # }
