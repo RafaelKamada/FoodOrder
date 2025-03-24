@@ -95,7 +95,7 @@ resource "kubernetes_config_map" "db_config" {
   }
 
   data = {
-    DB_CONNECTION_STRING = "Host=food-order-db.cpqtqlmpyljc.us-east-1.rds.amazonaws.com;Port=5432;Database=food-order-db;Username=postgres;Password=postgres"
+    DB_CONNECTION_STRING = "Host=food-order-db.cpqtqlmpyljc.us-east-1.rds.amazonaws.com;Port=5432;Database=foodorderdb;Username=postgres;Password=postgres"
   }
   
 }
