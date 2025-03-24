@@ -117,8 +117,14 @@ resource "kubernetes_job" "ef_database_update" {
 
           command = [
             "sh", "-c",
-            "dotnet ef database update --project /app/src/Infrastructure/Infra.Data/FoodOrder.Data.csproj --startup-project /app/src/Presentation/API/FoodOrder.API.csproj"
+            "dotnet tool install --global dotnet-ef && dotnet ef database update --project /app/src/Infrastructure/Infra.Data/FoodOrder.Data.csproj --startup-project /app/src/Presentation/API/FoodOrder.API.csproj"
           ]
+
+          # Adiciona o diretório de ferramentas ao PATH
+          env {
+            name  = "PATH"
+            value = "/root/.dotnet/tools:${PATH}"
+          }
 
           env {
             name = "ConnectionStrings__DefaultConnection"
