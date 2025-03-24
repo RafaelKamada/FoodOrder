@@ -32,12 +32,7 @@ resource "kubernetes_deployment" "api" {
           ]
           env {
             name = "ConnectionStrings__DefaultConnection"
-            value_from {
-              config_map_key_ref {
-                name = "db-config"
-                key  = "DB_CONNECTION_STRING"
-              }
-            }
+            value = "Host=food-order-db.cpqtqlmpyljc.us-east-1.rds.amazonaws.com;Port=5432;Database=foodorderdb;Username=postgres;Password=postgres"
           }
         }
 
@@ -56,12 +51,7 @@ resource "kubernetes_deployment" "api" {
 
           env {
             name = "ConnectionStrings__DefaultConnection"
-            value_from {
-              config_map_key_ref {
-                name = "db-config"
-                key  = "DB_CONNECTION_STRING"
-              }
-            }
+            value = "Host=food-order-db.cpqtqlmpyljc.us-east-1.rds.amazonaws.com;Port=5432;Database=foodorderdb;Username=postgres;Password=postgres"
           }
         }
       }
