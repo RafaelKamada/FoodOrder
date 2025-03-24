@@ -55,11 +55,6 @@ resource "kubernetes_deployment" "api" {
             }
           }
 
-          # Comando para atualizar o banco de dados
-          command = [
-            "sh", "-c",
-            "dotnet ef database update --project /FoodOrder/src/Infrastructure/Infra.Data/FoodOrder.Data.csproj --startup-project /FoodOrder/src/Presentation/API/FoodOrder.API.csproj && dotnet API.dll"
-          ]
         }
       }
     }
