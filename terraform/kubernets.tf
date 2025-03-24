@@ -123,7 +123,7 @@ resource "kubernetes_job" "ef_database_update" {
           # Adiciona o diretório de ferramentas ao PATH
           env {
             name  = "PATH"
-            value = "/root/.dotnet/tools:${PATH}"
+            value = "/root/.dotnet/tools:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
           }
 
           env {
