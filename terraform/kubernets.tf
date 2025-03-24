@@ -39,12 +39,6 @@ resource "kubernetes_deployment" "api" {
           env {
             name = "ConnectionStrings__DefaultConnection"
             value = "Host=${aws_lb.food_order_lb.dns_name};Port=5432;Database=foodorderdb;Username=postgres;Password=postgres"
-            #value_from {
-              #config_map_key_ref {
-                #name = "db-config"
-                #key  = "DB_CONNECTION_STRING"
-              #}
-            #}
           }
         }
       }
@@ -86,17 +80,16 @@ resource "kubernetes_service" "api" {
 }
 
 # ConfigMap para as configurações do banco de dados
-# resource "kubernetes_config_map" "db_config" {
- #  metadata {
- #    name = "db-config"
-#   }
+ resource "kubernetes_config_map" "db_config" {
+   metadata {
+     name = "db-config"
+   }
 
-#   data = {
-#     DB_CONNECTION_STRING = ""
-#     #DB_CONNECTION_STRING = "Host=${aws_lb.food_order_lb.dns_name};Port=5432;Database=foodorderdb;Username=postgres;Password=postgres"
-#   }
+   data = {
+     DB_CONNECTION_STRING = "Host=${aws_lb.food_order_lb.dns_name};Port=5432;Database=foodorderdb;Username=postgres;Password=postgres"
+   }
 
-#   depends_on = [
-#     aws_eks_cluster.eks-cluster
-#   ]
-# }
+   depends_on = [
+     aws_eks_cluster.eks-cluster
+   ]
+ }
