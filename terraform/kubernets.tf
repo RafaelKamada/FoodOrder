@@ -52,7 +52,8 @@ resource "kubernetes_deployment" "api" {
 
   depends_on = [
     aws_eks_cluster.eks-cluster,
-    aws_eks_node_group.eks-node
+    aws_eks_node_group.eks-node,
+    aws_lb.food_order_lb
   ]
 }
 
