@@ -26,10 +26,10 @@ resource "kubernetes_deployment" "api" {
         init_container {
           name  = "ef-database-update"
           image = "mcr.microsoft.com/dotnet/sdk:8.0"  # Usando a imagem do SDK do .NET
-          #command = [
-           # "sh", "-c",
-            #"dotnet ef database update --project /app/src/Infrastructure/Infra.Data/FoodOrder.Data.csproj --startup-project /app/src/Presentation/API/FoodOrder.API.csproj"
-          #]
+          command = [
+            "sh", "-c",
+            "dotnet tool install --global dotnet-ef && dotnet ef database update --project /app/src/Infrastructure/Infra.Data/FoodOrder.Data.csproj --startup-project /app/src/Presentation/API/FoodOrder.API.csproj"
+          ]
           env {
             name = "ConnectionStrings__DefaultConnection"
             value = "Host=food-order-db.cpqtqlmpyljc.us-east-1.rds.amazonaws.com;Port=5432;Database=foodorderdb;Username=postgres;Password=postgres"
@@ -97,48 +97,3 @@ resource "kubernetes_config_map" "db_config" {
   }
 }
 
-resource "kubernetes_job" "ef_database_update" {
-  metadata {
-    name = "ef-database-update"
-  }
-
-  spec {
-    template {
-      metadata {
-        labels = {
-          app = "ef-database-update"
-        }
-      }
-
-      spec {
-        container {
-          name  = "ef-database-update"
-          image = "mcr.microsoft.com/dotnet/sdk:8.0"  # Usando a imagem do SDK do .NET
-
-          command = [
-            "sh", "-c",
-            "dotnet tool install --global dotnet-ef && dotnet ef database update --project /app/src/Infrastructure/Infra.Data/FoodOrder.Data.csproj --startup-project /app/src/Presentation/API/FoodOrder.API.csproj"
-          ]
-
-          # Adiciona o diretório de ferramentas ao PATH
-          env {
-            name  = "PATH"
-            value = "/root/.dotnet/tools:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-          }
-
-          env {
-            name = "ConnectionStrings__DefaultConnection"
-            value_from {
-              config_map_key_ref {
-                name = "db-config"
-                key  = "DB_CONNECTION_STRING"
-              }
-            }
-          }
-        }
-
-        restart_policy = "Never"  # Não reiniciar o pod após a execução
-      }
-    }
-  }
-}
