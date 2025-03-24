@@ -59,11 +59,6 @@ resource "kubernetes_deployment" "api" {
       }
     }
   }
-
-  depends_on = [
-    aws_eks_cluster.eks-cluster,
-    aws_eks_node_group.eks-node
-  ]
 }
 
 resource "kubernetes_service" "api" {
@@ -102,8 +97,5 @@ resource "kubernetes_config_map" "db_config" {
   data = {
     DB_CONNECTION_STRING = "Host=food-order-db.cpqtqlmpyljc.us-east-1.rds.amazonaws.com;Port=5432;Database=food-order-db;Username=postgres;Password=postgres"
   }
-
-  depends_on = [
-    aws_eks_cluster.eks-cluster
-  ]
+  
 }
