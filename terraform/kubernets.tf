@@ -38,12 +38,13 @@ resource "kubernetes_deployment" "api" {
 
           env {
             name = "ConnectionStrings__DefaultConnection"
-            value_from {
-              config_map_key_ref {
-                name = "db-config"
-                key  = "DB_CONNECTION_STRING"
-              }
-            }
+            value = "Host=${aws_lb.food_order_lb.dns_name};Port=5432;Database=foodorderdb;Username=postgres;Password=postgres"
+            #value_from {
+              #config_map_key_ref {
+                #name = "db-config"
+                #key  = "DB_CONNECTION_STRING"
+              #}
+            #}
           }
         }
       }
