@@ -1,8 +1,9 @@
 name: Deploy api
 
 on:
-  repository_dispatch:
-    types: [terraform-applied]
+  push:
+    branches:
+      - fase_3
 
 jobs:
   deploy:
