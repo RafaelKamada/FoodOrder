@@ -38,7 +38,7 @@ resource "kubernetes_deployment" "api" {
 
         container {
           name  = "api-pod-config"
-          image = "vilacaro/api:v4.2"
+          image = "vilacaro/api:v4.3"
 
           port {
             container_port = 9000
