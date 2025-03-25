@@ -47,6 +47,76 @@
 4. Acessar o Swagger: ```http://localhost:9000/swagger/index.html```
 5. Após a inicialização do Swagger, é preciso seguir as instruções da Documentação do Cadastro de Produto e Documentação para o Fake Checkout.
 
+### :hammer: Entregáveis Fase 3
+- Configuração de deploy para Kubernetes utilizando Terraform. O projeto segue as melhores práticas de CI/CD, garantindo automação e segurança no deploy dos recursos. 
+
+## 📁 Estrutura do Repositório
+```
+food-order-terraform-db
+├── .github/workflows/  # Configuração dos pipelines de CI/CD
+│   ├── deploy.yml  # Workflow para provisionamento da infraestrutura AWS com Terraform
+├── kubernets.tf  # Configuração de deploy da api no cluster EKS na AWS
+├── provider.tf  # Configuração do provider AWS no Terraform
+├── vars.tf  # Definição de variáveis do Terraform
+└── README.md  # Documentação do projeto
+```
+
+## 🔧 Configuração e Deploy
+### 📌 Pré-requisitos
+- Terraform instalado
+- AWS CLI configurado
+- kubectl instalado
+
+## 🚀 Passos para Deploy
+
+1. Clone o repositório: 
+```git clone https://github.com/RafaelKamada/FoodOrder.git```
+```cd FoodOrder```
+
+2. Inicialize o Terraform:
+```terraform init```
+
+3. Valide e aplique a infraestrutura:
+```terraform plan```
+```terraform apply```
+
+4. Configure o contexto do Kubernetes:
+```aws eks update-kubeconfig --name nome-do-cluster --region regiao```
+
+5. Implante aplicações no cluster:
+```kubectl apply -f k8s/```
+
+## 🔑 Configuração do Secrets no GitHub
+
+### 1️⃣ Acesse as configurações do repositório
+1. Vá até o repositório no GitHub.
+2. Clique em Settings.
+3. No menu lateral, clique em Secrets and variables > Actions.
+4. Clique em New repository secret.
+
+#### 2️⃣ Adicione as Secrets necessárias
+✅ Para autenticação na AWS
+Essas credenciais são usadas pelo Terraform e pelo GitHub Actions para acessar a AWS.
+
+    | Nome da secret           | Descrição                                                                |
+    | :------------------------| :------------------------------------------------------------------------|
+    | `AWS_ACCESS_KEY_ID`      | Chave de acesso da AWS                                                   |
+    | `AWS_SECRET_ACCESS_KEY`  | Chave secreta da AWS                                                     |
+    | `AWS_SESSION_TOKEN`      | (Opcional) Token de sessão, se estiver usando credenciais temporárias    |
+
+✅ Outras Secrets
+Caso sua aplicação use um banco de dados ou outra API, adicione as credenciais necessárias.
+
+    | Nome da secret           | Descrição                  |
+    | :------------------------| :--------------------------|
+    | `DB_NAME`                | Nome do Banco de Dados     |
+    | `DB_USERNAME`            | Usuário do banco de dados  |
+    | `DB_PASSWORD`            | Senha do banco de dados    |
+
+
+
+    
+
 ### :page_with_curl: Documentações
 - [Documentação de cadastro de produto](./Readme/README_PRODUTO.md)
 - [Documentação para o Fake Checkout](./Readme/README_PEDIDO.md)
