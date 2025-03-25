@@ -23,19 +23,6 @@ resource "kubernetes_deployment" "api" {
       }
 
       spec {
-        init_container {
-          name  = "ef-database-update"
-          image = "mcr.microsoft.com/dotnet/sdk:8.0"  # Usando a imagem do SDK do .NET
-          #command = [
-           # "sh", "-c",
-          #  "dotnet tool install --global dotnet-ef && export PATH=\"$PATH:/root/.dotnet/tools\" && dotnet ef database update --project /app/src/Infrastructure/Infra.Data/FoodOrder.Data.csproj --startup-project /app/src/Presentation/API/FoodOrder.API.csproj"
-         # ]
-          env {
-            name = "ConnectionStrings__DefaultConnection"
-            value = "Host=food-order-db.cpqtqlmpyljc.us-east-1.rds.amazonaws.com;Port=5432;Database=foodorderdb;Username=postgres;Password=postgres"
-          }
-        }
-
         container {
           name  = "api-pod-config"
           image = "vilacaro/api:v4.3"
@@ -51,8 +38,13 @@ resource "kubernetes_deployment" "api" {
 
           env {
             name = "ConnectionStrings__DefaultConnection"
-            value = "Host=food-order-db.cpqtqlmpyljc.us-east-1.rds.amazonaws.com;Port=5432;Database=foodorderdb;Username=postgres;Password=postgres"
-          }
+            value_from {
+              config_map_key_ref {
+                name = "db-config"
+                key  = "DB_CONNECTION_STRING"
+              }
+            }
+          }          
         }
       }
     }
