@@ -1,38 +1,51 @@
-name: Deploy api
+name: Create Infra AWS
 
 on:
   push:
     branches:
       - fase_3
 
+env:
+  REGION_DEFAULT: us-east-1
+
 jobs:
-  deploy:
+  create_infra:
+    name: terraform
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout código
-        uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v2
 
-      - name: Configurar AWS CLI
-        uses: aws-actions/configure-aws-credentials@v2
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}  # Aqui você adiciona o token de sessão temporária
-          aws-region: us-east-1
+          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+          aws-region: ${{ env.REGION_DEFAULT }}
 
-      - name: Configurar Kubectl para acessar o EKS
-        run: |
-          aws eks update-kubeconfig --region us-east-1 --name EKS-FOOD-ORDER-API  # Ajuste o nome do seu cluster EKS
+      - name: Terraform Setup
+        uses: hashicorp/setup-terraform@v3
 
+      - name: Terraform Format
+        id: fmt
+        run: terraform fmt -check
+        continue-on-error: true
 
-      - name: Aplicar Deploy no Kubernetes
-        run: |
-          # Aplicando os manifests no EKS
-          kubectl apply -f k8s/manifests/db-secrets.yaml
-          kubectl apply -f k8s/manifests/db-configmap.yaml
-          kubectl apply -f k8s/manifests/service.yaml
-          kubectl apply -f k8s/manifests/deployment.yaml
-          
-          # Aguardando o rollout da aplicação
-          kubectl rollout status deployment/food-order-deployment
+      - name: Terraform Init
+        id: init
+        run: terraform init -input=false
+
+      - name: Terraform Validate
+        id: validate
+        run: terraform validate -no-color
+
+      - name: Terraform Plan
+        id: plan
+        run: terraform plan -out=tfplan -no-color -input=false
+        continue-on-error: true
+
+      - name: Terraform Apply
+        id: apply
+        run: terraform apply -input=false -auto-approve
