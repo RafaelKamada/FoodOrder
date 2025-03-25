@@ -1,0 +1,37 @@
+name: Deploy api
+
+on:
+  repository_dispatch:
+    types: [terraform-applied]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v3
+
+      - name: Configurar AWS CLI
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}  # Aqui você adiciona o token de sessão temporária
+          aws-region: us-east-1
+
+      - name: Configurar Kubectl para acessar o EKS
+        run: |
+          aws eks update-kubeconfig --region us-east-1 --name EKS-FOOD-ORDER-API  # Ajuste o nome do seu cluster EKS
+
+
+      - name: Aplicar Deploy no Kubernetes
+        run: |
+          # Aplicando os manifests no EKS
+          kubectl apply -f k8s/manifests/db-secrets.yaml
+          kubectl apply -f k8s/manifests/db-configmap.yaml
+          kubectl apply -f k8s/manifests/service.yaml
+          kubectl apply -f k8s/manifests/deployment.yaml
+          
+          # Aguardando o rollout da aplicação
+          kubectl rollout status deployment/food-order-deployment
