@@ -1,7 +1,6 @@
-﻿namespace FoodOrder.Infra.Data.Configurations
+﻿namespace FoodOrder.Data.Configurations;
+
+public interface IConnectionStringProvider
 {
-    public interface IConnectionStringProvider
-    {
-        string GetConnectionString(string name);
-    }
+    string GetConnectionString(string name);
 }
