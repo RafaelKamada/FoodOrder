@@ -1,7 +1,7 @@
 ﻿using FoodOrder.Data.Context;
 using Microsoft.EntityFrameworkCore;
 
-namespace FoodOrder.Presentation.Api.Services;
+namespace FoodOrder.Api.Services;
 
 public static class MigrationExtensions
 {

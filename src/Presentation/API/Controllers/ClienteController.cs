@@ -2,7 +2,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FoodOrder.Presentation.Api.Controllers;
+namespace FoodOrder.Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]

@@ -1,6 +1,6 @@
 ﻿using FoodOrder.Data.Configurations;
 
-namespace FoodOrder.Presentation.Api.Services;
+namespace FoodOrder.Api.Services;
 
 public class ConnectionStringProvider(IConfiguration configuration) : IConnectionStringProvider
 {

@@ -23,7 +23,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{7945D448-7F6A-4C78-8138-4616FE441FB1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodOrder.Presentation.Api", "src\Presentation\API\FoodOrder.Presentation.Api.csproj", "{74FED03D-5157-45F3-AEDE-B141C6DD16CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodOrder.Api", "src\Presentation\API\FoodOrder.Api.csproj", "{74FED03D-5157-45F3-AEDE-B141C6DD16CD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodOrder.Data", "src\Infrastructure\Infra.Data\FoodOrder.Data.csproj", "{EFCFE594-5A89-4D29-8C37-EF07A3DCAB74}"
 EndProject
