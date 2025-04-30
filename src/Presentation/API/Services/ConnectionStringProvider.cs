@@ -1,18 +1,14 @@
-﻿using FoodOrder.Infra.Data.Configurations;
+﻿using FoodOrder.Data.Configurations;
 
-namespace API.Services;
+namespace FoodOrder.Api.Services;
 
-public class ConnectionStringProvider : IConnectionStringProvider
+public class ConnectionStringProvider(IConfiguration configuration) : IConnectionStringProvider
 {
-    private readonly IConfiguration _configuration;
-
-    public ConnectionStringProvider(IConfiguration configuration)
-    {
-        _configuration = configuration;
-    }
+    private readonly IConfiguration _configuration = configuration;
 
     public string GetConnectionString(string name)
     {
-        return _configuration.GetConnectionString(name);
+        var connectionString = _configuration.GetConnectionString(name);
+        return connectionString ?? throw new InvalidOperationException($"Connection string '{name}' not found.");
     }
 }

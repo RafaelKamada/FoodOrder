@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FoodOrder.Infra.Data.Migrations
 {
     [DbContext(typeof(NpgsqlContext))]
-    [Migration("20241005011020_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250426222813_updateClients")]
+    partial class updateClients
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace FoodOrder.Infra.Data.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Domain.Entities.Cliente", b =>
+            modelBuilder.Entity("FoodOrder.Domain.Entities.Cliente", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -34,6 +34,9 @@ namespace FoodOrder.Infra.Data.Migrations
                     b.Property<string>("Cpf")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<DateTime>("DataCadastro")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -44,6 +47,10 @@ namespace FoodOrder.Infra.Data.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Cpf")
+                        .IsUnique()
+                        .HasDatabaseName("UN_Cliente_Cpf");
 
                     b.ToTable("Clientes");
                 });
