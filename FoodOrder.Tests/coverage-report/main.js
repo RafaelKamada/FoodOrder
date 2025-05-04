@@ -210,9 +210,29 @@ for (i = 0, l = charts.length; i < l; i++) {
 }
 
 var assemblies = [
+  {
+    "name": "FoodOrder.Application",
+    "classes": [
+      { "name": "FoodOrder.Application.Features.AddClienteCommand", "rp": "FoodOrder.Application_AddClienteCommand.html", "cl": 3, "ucl": 0, "cal": 3, "tl": 27, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "FoodOrder.Application.Features.AddClienteCommandHandler", "rp": "FoodOrder.Application_AddClienteCommandHandler.html", "cl": 7, "ucl": 0, "cal": 7, "tl": 27, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "FoodOrder.Application.Features.ClienteCollectionQuery", "rp": "FoodOrder.Application_ClienteCollectionQuery.html", "cl": 2, "ucl": 0, "cal": 2, "tl": 20, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "FoodOrder.Application.Features.ClienteCollectionQueryHandler", "rp": "FoodOrder.Application_ClienteCollectionQueryHandler.html", "cl": 5, "ucl": 0, "cal": 5, "tl": 20, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "FoodOrder.Application.UseCases.ClienteUseCase", "rp": "FoodOrder.Application_ClienteUseCase.html", "cl": 9, "ucl": 0, "cal": 9, "tl": 21, "cb": 2, "tb": 2, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+    ]},
+  {
+    "name": "FoodOrder.Data",
+    "classes": [
+      { "name": "FoodOrder.Data.Context.NpgsqlContext", "rp": "FoodOrder.Data_NpgsqlContext.html", "cl": 11, "ucl": 1, "cal": 12, "tl": 26, "cb": 1, "tb": 2, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "FoodOrder.Data.Repositorio.ClienteRepository", "rp": "FoodOrder.Data_ClienteRepository.html", "cl": 12, "ucl": 6, "cal": 18, "tl": 35, "cb": 2, "tb": 6, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+    ]},
+  {
+    "name": "FoodOrder.Domain",
+    "classes": [
+      { "name": "FoodOrder.Domain.Entities.Cliente", "rp": "FoodOrder.Domain_Cliente.html", "cl": 18, "ucl": 1, "cal": 19, "tl": 38, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+    ]},
 ];
 
-var metrics = [];
+var metrics = [{ "name": "Crap Score", "abbreviation": "crp", "explanationUrl": "https://googletesting.blogspot.de/2011/02/this-code-is-crap.html" }, { "name": "Cyclomatic complexity", "abbreviation": "cc", "explanationUrl": "https://en.wikipedia.org/wiki/Cyclomatic_complexity" }, { "name": "Line coverage", "abbreviation": "cov", "explanationUrl": "https://en.wikipedia.org/wiki/Code_coverage" }, { "name": "Branch coverage", "abbreviation": "bcov", "explanationUrl": "https://en.wikipedia.org/wiki/Code_coverage" }];
 
 var historicCoverageExecutionTimes = [];
 
