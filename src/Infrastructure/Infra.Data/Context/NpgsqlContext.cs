@@ -4,13 +4,17 @@ using FoodOrder.Data.Configurations;
 
 namespace FoodOrder.Data.Context;
 
-public class NpgsqlContext(IConnectionStringProvider connectionStringProvider) : DbContext
+public class NpgsqlContext(IConnectionStringProvider connectionStringProvider, bool isTesting = false) : DbContext
 {
     private readonly IConnectionStringProvider _connectionStringProvider = connectionStringProvider;
+    private readonly bool _isTesting = isTesting;
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseNpgsql(_connectionStringProvider.GetConnectionString("DefaultConnection"));
+        if (_isTesting)
+            optionsBuilder.UseInMemoryDatabase("PedidosDb");
+        else
+            optionsBuilder.UseNpgsql(_connectionStringProvider.GetConnectionString("DefaultConnection"));
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
