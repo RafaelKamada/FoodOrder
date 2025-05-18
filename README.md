@@ -6,26 +6,44 @@
 Este repositório constrói um serviço que faz parte de uma arquitetura de microsserviços.</p>
 
 ## 📊 Code Coverage
-#######################################################################################################################
-#######################################################################################################################
-#######################################################################################################################
+![Coverage](./Readme/coverage.png?raw=true "Arquitetura")
+
 ## 🏗️ Arquitetura de Microsserviços
 ![Arquitetura](arquitetura.png?raw=true "Arquitetura")
 
 ### :computer: Tecnologias Utilizadas
-- Linguagem escolhida: #####
-- Banco de Dados: #####
-- Mensageria: #####
+- Linguagem escolhida: .NET
+- Banco de Dados: Postgres
+- Mensageria: Publica na fila SQS
 
 ### :hammer: Detalhes desse serviço
-#######################################################################################################################
-#######################################################################################################################
-#######################################################################################################################
+Microserviço responsável pelo módulo de clientes da arquitetura de microserviços do sistema FoodOrder, desenvolvido em .NET e Postgres.
 
 ### :hammer_and_wrench: Execução do projeto
-#######################################################################################################################
-#######################################################################################################################
-#######################################################################################################################
+Para rodar o serviço localmente, você precisa ter Docker e .NET 9 instalados.
+
+Para construir e rodar o serviço, utilize o comando:
+
+```bash
+docker-compose up --build -d
+```
+
+* Criar a rede Docker para comunicação entre os serviços.
+* Subir o banco de dados Postgress.
+* Iniciar o serviço `foodorder`.
+
+Para parar e remover os containers, use:
+
+```bash
+docker-compose down
+```
+
+### Endpoints Disponíveis
+
+| Método | Endpoint                                | Descrição                                     |
+| ------ | --------------------------------------- | --------------------------------------------- |
+| POST   | /Cadastrar                              | Cadastra um novo cliente.                     |
+| GET    | /ConsultarPorCpf/{cpf}                  | Consulta um cliente cadastrado pelo cpf.      |
 
 ### 🗄️ Outros repos do microserviço dessa arquitetura
 - [Food Order Produção](https://github.com/diegogl12/food-order-producao)
