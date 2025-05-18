@@ -3,10 +3,10 @@ name: CI - Build e Testes
 on:
   push:
     branches:
-      - Master
+      - master
   pull_request:
     branches:
-      - Master
+      - master
 
 jobs:
   build-and-test:
