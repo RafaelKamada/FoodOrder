@@ -2,14 +2,14 @@ name: Deploy GitHub Pages
 
 on:
   workflow_run:
-    workflows: ["Test and Report Coverage"]  # Nome do workflow de testes e cobertura
+    workflows: ["Test and Report Coverage"]
     types:
       - completed
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    if: github.event.workflow_run.head_branch == 'master'  # Só executar se o workflow de testes foi feito na branch 'fase_4'
+    if: github.event.workflow_run.head_branch == 'master'
     
     steps:
       - name: Checkout code
