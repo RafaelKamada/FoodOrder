@@ -9,7 +9,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    if: github.event.workflow_run.head_branch == 'fase_4_b'  # Só executar se o workflow de testes foi feito na branch 'fase_4'
+    if: github.event.workflow_run.head_branch == 'master'  # Só executar se o workflow de testes foi feito na branch 'fase_4'
     
     steps:
       - name: Checkout code
