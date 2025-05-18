@@ -22,10 +22,10 @@ jobs:
           dotnet-version: '9.0.x'
 
       - name: 🧪 Restaurar dependências
-        run: dotnet restore FoodOrder/FoodOrder.sln
+        run: dotnet restore FoodOrder.sln
 
       - name: 🧱 Build do projeto
-        run: dotnet build FoodOrder/FoodOrder.sln --no-restore --configuration Release
+        run: dotnet build FoodOrder.sln --no-restore --configuration Release
 
       - name: 🧪 Rodar testes
-        run: dotnet test FoodOrder/FoodOrder.sln --no-build --verbosity normal
+        run: dotnet test FoodOrder.sln --no-build --verbosity normal
