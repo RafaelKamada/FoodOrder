@@ -27,5 +27,10 @@ jobs:
       - name: 🧱 Build do projeto
         run: dotnet build FoodOrder.sln --no-restore --configuration Release
 
-      - name: 🧪 Rodar testes
-        run: dotnet test FoodOrder.sln --no-build --verbosity normal
+      - name: 🧪 Rodar testes com cobertura
+        run: dotnet test FoodOrder.sln --no-build --configuration Release --collect:"XPlat Code Coverage" --verbosity normal
+
+      - name: 🔍 Listar arquivos gerados
+        run: |
+          find . -name "*.coverage"
+          find . -name "*.xml"
