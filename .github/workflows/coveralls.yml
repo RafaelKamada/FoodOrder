@@ -104,7 +104,7 @@ jobs:
           csmacnz.Coveralls \
             --useRelativePaths \
             --opencover \
-            -i ./Tests/Coverage/XML/coverage.cobertura.xml \
+            -i ./Tests/Coverage/XML/Coverage/coverage.cobertura.xml \
             --repoToken "${{ secrets.COVERALLS_REPO_TOKEN }}" \
             --commitId "${{ github.sha }}" \
             --commitBranch "${{ github.ref_name }}"  \
