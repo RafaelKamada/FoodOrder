@@ -52,6 +52,13 @@ docker-compose down
 - [Food Order Pedidos](https://github.com/vilacalima/food-order-pedidos)
 - [Food Order Usuários](https://github.com/RafaelKamada/FoodOrder)
 
+
+### 🗄️ Outros repos do Terraform/DB dessa arquitetura
+- [Food Order Terraform](https://github.com/RafaelKamada/food-order-terraform-infra)
+- [Food Order DB](https://github.com/nathaliaifurita/food-order-terraform-db)
+- [Food Order MongoDB](https://github.com/RafaelKamada/food-order-terraform-mongodb)
+
+
 ### :page_with_curl: Documentações
 - [Miro (todo planejamento do projeto)](https://miro.com/app/board/uXjVKhyEAME=/)
 
